@@ -1,0 +1,129 @@
+body {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('campo.jpg');
+}
+
+/* Estilos para el calendario */
+#calendar {
+  font-family: Piedra;
+  width: 350px;
+  margin: 0;
+}
+
+.month-header {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row; /*column;*/
+  align-items: center;
+  justify-content: center;
+}
+
+.month-header button {
+  font-size: 12px;
+}
+
+.day-names {
+  display: flex;
+}
+
+.day-name {
+  flex: 1;
+  text-align: center;
+  padding: 5px;
+}
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.day {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.current-day {
+  background-color: #5cd2ff; /* Azul claro */
+}
+
+.selectable-day {
+  background-color: #f2f2f2; /* Gris claro */
+}
+
+.selected-day {
+  background-color: #c4e5c3; /* Verde claro */
+}
+
+/* Estilos para el formulario de cita */
+#appointment-form {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#appointment-form h1 {
+  margin-bottom: 10px;
+  font-family: Caveat;
+}
+
+#appointment-form label {
+  margin-bottom: 5px;
+}
+
+#save-appointment {
+  margin-top: 10px;
+}
+
+/* Estilos para la lista de eventos que van debajo del calendario */
+#event-list {
+  margin-top: 20px;
+  font-family: Lobster;
+}
+
+.event {
+  margin-bottom: 10px;
+}
+
+#selected-date,
+#appointment-form {
+  font-family: Piedra; /* Fuente para el concepto evento y hora  */
+}
+
+#appointment-name {
+    font-family: Piedra; /* Fuente de cuando ingresas el evento */
+}
+
+#appointment-time {
+    font-family: Piedra; /* Fuente de cuando ingresas la hora */
+}
+
+#save-appointment {
+    font-family: Piedra; /* Fuente del boton Guardar */
+}
+
+#back-to-calendar {
+    font-family: Piedra; /* Fuente del boton Atras */
+    font-size: 12px;
+    order: -1;
+}
+
+/* Estilos para el botón flotante */
+.fab {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #007bff; /* Cambia el color de fondo según tu preferencia */
+  color: #fff;
+  font-size: 30px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  z-index: 999; /* Asegura que esté encima de otros elementos */
+}
