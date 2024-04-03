@@ -9,19 +9,43 @@ body {
   margin: 0;
 }
 
+
+/* Cabecera del mes */
 .month-header {
   text-align: center;
-  font-size: 20px;
+  font-size: 30px;
   margin-bottom: 20px;
-  display: flex;
-  flex-direction: row; /*column;*/
+ /* display: run-in; */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.month-header button {
-  font-size: 12px;
+
+
+
+/* Boton para ir al mes anterior "<" */
+.prev-month-button {
+  font-size: 20px;
+  display: inline;
+  flex-direction: row;
+  padding: 10px;
+  text-align: ;
+  flex-direction: ;
+  
 }
+
+/* Boton para ir al mes siguiente ">"*/
+.next-month-button {
+  font-size: 20px;
+  display: inline;
+  padding: 10px;
+  flex-direction: row;
+  text-align: ;
+  flex-direction: ;
+    
+}
+
 
 .day-names {
   display: flex;
@@ -74,10 +98,6 @@ body {
   margin-bottom: 5px;
 }
 
-#save-appointment {
-  margin-top: 10px;
-}
-
 /* Estilos para la lista de eventos que van debajo del calendario */
 #event-list {
   margin-top: 20px;
@@ -101,13 +121,18 @@ body {
     font-family: Piedra; /* Fuente de cuando ingresas la hora */
 }
 
+/* Boton 'guardar' del formulario */
 #save-appointment {
     font-family: Piedra; /* Fuente del boton Guardar */
+    font-size: 15px;
+    margin-top: 10px;
+    
 }
 
+/* Boton 'Atras' del formulario */
 #back-to-calendar {
     font-family: Piedra; /* Fuente del boton Atras */
-    font-size: 12px;
+    font-size: 15px;
     order: -1;
 }
 
