@@ -5,6 +5,36 @@ const appointmentForm = document.getElementById('appointment-form');
 // Obtener el botón de volver al calendario
 const backToCalendarBtn = document.getElementById('back-to-calendar');
 
+// Objeto para almacenar los eventos
+const events = {};
+
+// Función para añadir un evento a un día específico
+function addEventToDay(day, eventName, eventTime) {
+  const key = day.toISOString().split('T')[0];
+  if (!events[key]) {
+    events[key] = [];
+  }
+  events[key].push({ name: eventName, time: eventTime });
+}
+
+// Función para mostrar los eventos del día seleccionado
+function showEventsForSelectedDay(selectedDay) {
+  const key = selectedDay.toISOString().split('T')[0];
+  const eventListElement = document.getElementById('event-list');
+  eventListElement.innerHTML = ''; // Limpiar la lista de eventos antes de actualizar
+  if (events[key]) {
+    events[key].forEach(event => {
+      const eventItem = document.createElement('div');
+      eventItem.classList.add('event');
+      eventItem.textContent = `${event.name} - ${event.time}`;
+      eventListElement.appendChild(eventItem);
+    });
+  }
+  // Actualizar el texto debajo del calendario solo cuando se seleccione un día
+  const selectedDateElement = document.getElementById('selected-date');
+  selectedDateElement.textContent = selectedDay.toLocaleDateString('es', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+}
+
 // Crear el calendario
 function createCalendar() {
   const currentDate = new Date();
@@ -16,8 +46,6 @@ function createCalendar() {
   // Función para actualizar el calendario con el mes y año especificados
   function updateCalendar(year, month) {
     calendarElement.innerHTML = ''; // Limpiar el calendario antes de actualizar
-    
-    
 
     // Crear la cabecera del mes
     const monthHeader = document.createElement('div');
@@ -26,7 +54,7 @@ function createCalendar() {
 
     // Crear el botón de "Atrás"
     const prevMonthButton = document.createElement('button');
-    prevMonthButton.textContent = '<';
+    prevMonthButton.textContent ='<';
     prevMonthButton.classList.add('prev-month-button');
     monthHeader.appendChild(prevMonthButton);
     // Evento de clic para ir al mes anterior
@@ -40,15 +68,7 @@ function createCalendar() {
       updateCalendar(currentYear, currentMonth);
     });
 
-    // Crear el botón de "Agregar evento"
-    const addEventButton = document.createElement('button');
-    addEventButton.textContent = 'Agregar evento';
-    addEventButton.classList.add('add-event-button');
-    monthHeader.appendChild(addEventButton);
-    // Evento de clic para ir a la pantalla de agregar evento
-    addEventButton.addEventListener('click', () => {
-      showAppointmentForm();
-    });
+    
 
     // Crear el botón de "Siguiente"
     const nextMonthButton = document.createElement('button');
@@ -134,6 +154,20 @@ function createCalendar() {
     // Mostrar el formulario de cita
     appointmentForm.style.display = 'block';
   }
+  
+  
+  
+  
+  
+  // Obtener el botón flotante
+const addEventFabButton = document.getElementById('add-event-fab');
+
+// Evento de clic para ir a la pantalla de agregar evento
+addEventFabButton.addEventListener('click', () => {
+  showAppointmentForm();
+});
+  
+  
 
   // Función para volver al calendario desde el formulario de cita
   backToCalendarBtn.addEventListener('click', () => {
@@ -170,32 +204,3 @@ function createCalendar() {
 // Crear el calendario
 createCalendar();
 
-// Objeto para almacenar los eventos
-const events = {};
-
-// Función para añadir un evento a un día específico
-function addEventToDay(day, eventName, eventTime) {
-  const key = day.toISOString().split('T')[0];
-  if (!events[key]) {
-    events[key] = [];
-  }
-  events[key].push({ name: eventName, time: eventTime });
-}
-
-// Función para mostrar los eventos del día seleccionado
-function showEventsForSelectedDay(selectedDay) {
-  const key = selectedDay.toISOString().split('T')[0];
-  const eventListElement = document.getElementById('event-list');
-  eventListElement.innerHTML = ''; // Limpiar la lista de eventos antes de actualizar
-  if (events[key]) {
-    events[key].forEach(event => {
-      const eventItem = document.createElement('div');
-      eventItem.classList.add('event');
-      eventItem.textContent = `${event.name} - ${event.time}`;
-      eventListElement.appendChild(eventItem);
-    });
-  }
-  // Actualizar el texto debajo del calendario solo cuando se seleccione un día
-  const selectedDateElement = document.getElementById('selected-date');
-  selectedDateElement.textContent = selectedDay.toLocaleDateString('es', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-}
