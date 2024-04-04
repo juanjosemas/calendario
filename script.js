@@ -17,7 +17,7 @@ function addEventToDay(day, eventName, eventTime) {
   events[key].push({ name: eventName, time: eventTime });
 }
 
-// Función para mostrar los eventos del día seleccionado
+ // Función para mostrar los eventos del día seleccionado
 function showEventsForSelectedDay(selectedDay) {
   const key = selectedDay.toISOString().split('T')[0];
   const eventListElement = document.getElementById('event-list');
@@ -26,7 +26,21 @@ function showEventsForSelectedDay(selectedDay) {
     events[key].forEach(event => {
       const eventItem = document.createElement('div');
       eventItem.classList.add('event');
-      eventItem.textContent = `${event.name} - ${event.time}`;
+
+      // Mostrar el nombre y la hora del evento
+      const eventInfo = document.createElement('span');
+      eventInfo.textContent = `${event.name} - ${event.time}`;
+      eventItem.appendChild(eventInfo);
+
+      // Agregar un botón de "Borrar" para eliminar el evento
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Borrar';
+      deleteButton.classList.add('delete-event-button');
+      deleteButton.addEventListener('click', () => {
+        deleteEvent(selectedDay, event);
+      });
+      eventItem.appendChild(deleteButton);
+
       eventListElement.appendChild(eventItem);
     });
   }
@@ -35,7 +49,20 @@ function showEventsForSelectedDay(selectedDay) {
   selectedDateElement.textContent = selectedDay.toLocaleDateString('es', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 }
 
-// Crear el calendario
+// Función para eliminar un evento seleccionado
+function deleteEvent(day, eventToDelete) {
+  const key = day.toISOString().split('T')[0];
+  if (events[key]) {
+    events[key] = events[key].filter(event => event !== eventToDelete);
+    // Mostrar los eventos actualizados después de eliminar el evento
+    showEventsForSelectedDay(day);
+    // Actualizar el calendario para reflejar el cambio en los eventos
+    const currentDate = new Date(); // Obtener la fecha actual
+    updateCalendar(currentDate.getFullYear(), currentDate.getMonth()); // Actualizar el calendario con la fecha actual
+  }
+}
+    
+  // Crear el calendario
 function createCalendar() {
   const currentDate = new Date();
   let currentYear = currentDate.getFullYear();
@@ -67,8 +94,6 @@ function createCalendar() {
       }
       updateCalendar(currentYear, currentMonth);
     });
-
-    
 
     // Crear el botón de "Siguiente"
     const nextMonthButton = document.createElement('button');
@@ -124,12 +149,19 @@ function createCalendar() {
       const dayElement = document.createElement('div');
       dayElement.classList.add('day');
       dayElement.textContent = i;
+
+      const key = new Date(year, month, i).toISOString().split('T')[0];
+      if (events[key] && events[key].length > 0) {
+        dayElement.classList.add('event-day'); // Agregar clase 'event-day' si hay eventos en este día
+      }
+
       // Agregar clase 'current-day' al día actual
       if (currentDate.getDate() === i && month === currentDate.getMonth() && year === currentDate.getFullYear()) {
         dayElement.classList.add('current-day');
       } else {
         dayElement.classList.add('selectable-day'); // Agregar clase a los días seleccionables
       }
+
       // Evento de clic para seleccionar el día
       dayElement.addEventListener('click', () => {
         // Remover la clase de los otros días seleccionados
@@ -154,20 +186,14 @@ function createCalendar() {
     // Mostrar el formulario de cita
     appointmentForm.style.display = 'block';
   }
-  
-  
-  
-  
-  
-  // Obtener el botón flotante
-const addEventFabButton = document.getElementById('add-event-fab');
 
-// Evento de clic para ir a la pantalla de agregar evento
-addEventFabButton.addEventListener('click', () => {
-  showAppointmentForm();
-});
-  
-  
+  // Obtener el botón flotante
+  const addEventFabButton = document.getElementById('add-event-fab');
+
+  // Evento de clic para ir a la pantalla de agregar evento
+  addEventFabButton.addEventListener('click', () => {
+    showAppointmentForm();
+  });
 
   // Función para volver al calendario desde el formulario de cita
   backToCalendarBtn.addEventListener('click', () => {
@@ -199,8 +225,13 @@ addEventFabButton.addEventListener('click', () => {
 
   // Crear el calendario al cargar la página
   updateCalendar(currentYear, currentMonth);
-}
+     } 
 
 // Crear el calendario
 createCalendar();
 
+
+// Función para actualizar el calendario con el mes y año especificados
+function updateCalendar(year, month) {
+  // Tu código para actualizar el calendario iría aquí
+}
