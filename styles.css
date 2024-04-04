@@ -22,8 +22,8 @@ body {
 }
 
 /* Cambia el color del numero cuando tiene un evento */
-.day-number{
-  color: hotpink; 
+.event-day{
+    color: hotpink;
 }
 
 .delete-event-button{
