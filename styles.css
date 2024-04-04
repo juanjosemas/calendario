@@ -23,9 +23,10 @@ body {
 
 /* Cambia el color del numero cuando tiene un evento */
 .event-day{
-    color: hotpink;
+    color: salmon;
 }
 
+/* Boton de borrar evento */
 .delete-event-button{
     font-family: Piedra;
     border-radius: 20%;
