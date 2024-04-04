@@ -21,13 +21,9 @@ body {
   justify-content: center;
 }
 
-/* Cambiar color si hay un evento */
-.has-events {
-  background-color: lightsteelblue; /* fucsia */
-}
-
-.event-day {
-  background-color: #8a2be2; /* Cambia el color lila a tu preferencia */
+/* Cambia el color del numero cuando tiene un evento */
+.day-number{
+  color: hotpink; 
 }
 
 .delete-event-button{
