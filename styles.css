@@ -30,6 +30,13 @@ body {
   background-color: #8a2be2; /* Cambia el color lila a tu preferencia */
 }
 
+.delete-event-button{
+    font-family: Piedra;
+    border-radius: 20%;
+    color: grey;
+    font-style: italic;
+}
+
 
 
 
