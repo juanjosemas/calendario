@@ -6,7 +6,7 @@ const appointmentForm = document.getElementById('appointment-form');
 const backToCalendarBtn = document.getElementById('back-to-calendar');
 
 // Objeto para almacenar los eventos
-const events = {};
+let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : {};
 
 // Función para añadir un evento a un día específico
 function addEventToDay(day, eventName, eventTime) {
@@ -15,9 +15,10 @@ function addEventToDay(day, eventName, eventTime) {
     events[key] = [];
   }
   events[key].push({ name: eventName, time: eventTime });
+  localStorage.setItem('events', JSON.stringify(events)); // Guardar eventos en localStorage
 }
 
- // Función para mostrar los eventos del día seleccionado
+// Función para mostrar los eventos del día seleccionado
 function showEventsForSelectedDay(selectedDay) {
   const key = selectedDay.toISOString().split('T')[0];
   const eventListElement = document.getElementById('event-list');
@@ -54,6 +55,7 @@ function deleteEvent(day, eventToDelete) {
   const key = day.toISOString().split('T')[0];
   if (events[key]) {
     events[key] = events[key].filter(event => event !== eventToDelete);
+    localStorage.setItem('events', JSON.stringify(events)); // Actualizar eventos en localStorage
     // Mostrar los eventos actualizados después de eliminar el evento
     showEventsForSelectedDay(day);
     // Actualizar el calendario para reflejar el cambio en los eventos
@@ -149,15 +151,10 @@ function createCalendar() {
       const dayElement = document.createElement('div');
       dayElement.classList.add('day');
       dayElement.textContent = i;
-      
-     
-     
-     
-      // Agregar una clase si hay eventos en este día
+
       const key = new Date(year, month, i).toISOString().split('T')[0];
       if (events[key] && events[key].length > 0) {
-        dayElement.classList.add('event-day');
-        dayElement.innerHTML = `<span class="day-number">${i}</span>`; // Encerrar el número del día en un span para aplicar estilos
+        dayElement.classList.add('event-day'); // Agregar clase 'event-day' si hay eventos en este día
       }
 
       // Agregar clase 'current-day' al día actual
