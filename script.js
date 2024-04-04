@@ -5,8 +5,13 @@ const appointmentForm = document.getElementById('appointment-form');
 // Obtener el botón de volver al calendario
 const backToCalendarBtn = document.getElementById('back-to-calendar');
 
-// Objeto para almacenar los eventos
-const events = {};
+// Obtener los eventos guardados en el almacenamiento local o crear un objeto vacío si no hay eventos guardados
+let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : {};
+
+// Función para guardar los eventos en el almacenamiento local
+function saveEvents() {
+  localStorage.setItem('events', JSON.stringify(events));
+}
 
 // Función para añadir un evento a un día específico
 function addEventToDay(day, eventName, eventTime) {
@@ -15,9 +20,10 @@ function addEventToDay(day, eventName, eventTime) {
     events[key] = [];
   }
   events[key].push({ name: eventName, time: eventTime });
+  saveEvents();
 }
 
- // Función para mostrar los eventos del día seleccionado
+// Función para mostrar los eventos del día seleccionado
 function showEventsForSelectedDay(selectedDay) {
   const key = selectedDay.toISOString().split('T')[0];
   const eventListElement = document.getElementById('event-list');
@@ -54,6 +60,7 @@ function deleteEvent(day, eventToDelete) {
   const key = day.toISOString().split('T')[0];
   if (events[key]) {
     events[key] = events[key].filter(event => event !== eventToDelete);
+    saveEvents();
     // Mostrar los eventos actualizados después de eliminar el evento
     showEventsForSelectedDay(day);
     // Actualizar el calendario para reflejar el cambio en los eventos
@@ -62,7 +69,7 @@ function deleteEvent(day, eventToDelete) {
   }
 }
     
-  // Crear el calendario
+// Crear el calendario
 function createCalendar() {
   const currentDate = new Date();
   let currentYear = currentDate.getFullYear();
@@ -122,7 +129,8 @@ function createCalendar() {
       const dayNameElement = document.createElement('div');
       dayNameElement.classList.add('day-name');
       dayNameElement.textContent = dayName;
-      dayNamesRow.appendChild(dayNameElement);
+              
+dayNamesRow.appendChild(dayNameElement);
     });
     calendarElement.appendChild(dayNamesRow);
 
@@ -225,13 +233,7 @@ function createCalendar() {
 
   // Crear el calendario al cargar la página
   updateCalendar(currentYear, currentMonth);
-     } 
+}
 
 // Crear el calendario
 createCalendar();
-
-
-// Función para actualizar el calendario con el mes y año especificados
-function updateCalendar(year, month) {
-  // Tu código para actualizar el calendario iría aquí
-}
