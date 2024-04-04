@@ -5,13 +5,8 @@ const appointmentForm = document.getElementById('appointment-form');
 // Obtener el botón de volver al calendario
 const backToCalendarBtn = document.getElementById('back-to-calendar');
 
-// Obtener los eventos guardados en el almacenamiento local o crear un objeto vacío si no hay eventos guardados
-let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : {};
-
-// Función para guardar los eventos en el almacenamiento local
-function saveEvents() {
-  localStorage.setItem('events', JSON.stringify(events));
-}
+// Objeto para almacenar los eventos
+const events = {};
 
 // Función para añadir un evento a un día específico
 function addEventToDay(day, eventName, eventTime) {
@@ -20,10 +15,9 @@ function addEventToDay(day, eventName, eventTime) {
     events[key] = [];
   }
   events[key].push({ name: eventName, time: eventTime });
-  saveEvents();
 }
 
-// Función para mostrar los eventos del día seleccionado
+ // Función para mostrar los eventos del día seleccionado
 function showEventsForSelectedDay(selectedDay) {
   const key = selectedDay.toISOString().split('T')[0];
   const eventListElement = document.getElementById('event-list');
@@ -60,7 +54,6 @@ function deleteEvent(day, eventToDelete) {
   const key = day.toISOString().split('T')[0];
   if (events[key]) {
     events[key] = events[key].filter(event => event !== eventToDelete);
-    saveEvents();
     // Mostrar los eventos actualizados después de eliminar el evento
     showEventsForSelectedDay(day);
     // Actualizar el calendario para reflejar el cambio en los eventos
@@ -129,8 +122,7 @@ function createCalendar() {
       const dayNameElement = document.createElement('div');
       dayNameElement.classList.add('day-name');
       dayNameElement.textContent = dayName;
-              
-dayNamesRow.appendChild(dayNameElement);
+      dayNamesRow.appendChild(dayNameElement);
     });
     calendarElement.appendChild(dayNamesRow);
 
@@ -157,10 +149,15 @@ dayNamesRow.appendChild(dayNameElement);
       const dayElement = document.createElement('div');
       dayElement.classList.add('day');
       dayElement.textContent = i;
-
+      
+     
+     
+     
+      // Agregar una clase si hay eventos en este día
       const key = new Date(year, month, i).toISOString().split('T')[0];
       if (events[key] && events[key].length > 0) {
-        dayElement.classList.add('event-day'); // Agregar clase 'event-day' si hay eventos en este día
+        dayElement.classList.add('event-day');
+        dayElement.innerHTML = `<span class="day-number">${i}</span>`; // Encerrar el número del día en un span para aplicar estilos
       }
 
       // Agregar clase 'current-day' al día actual
@@ -237,3 +234,8 @@ dayNamesRow.appendChild(dayNameElement);
 
 // Crear el calendario
 createCalendar();
+
+// Función para actualizar el calendario con el mes y año especificados
+function updateCalendar(year, month) {
+  // Tu código para actualizar el calendario iría aquí
+}
