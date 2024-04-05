@@ -9,7 +9,6 @@ body {
   margin: 0;
 }
 
-
 /* Cabecera del mes */
 .month-header {
   text-align: center;
@@ -22,7 +21,7 @@ body {
 
 /* Cambia el color del numero cuando tiene un evento */
 .event-day{
-    color: hotpink;
+    color: magenta;
 }
 
 /* Boton de borrar evento */
@@ -34,9 +33,6 @@ body {
     margin: 5px;
 }
 
-
-
-
 /* Boton para ir al mes anterior "<" */
 .prev-month-button {
   font-size: 20px;
@@ -44,8 +40,8 @@ body {
   flex-direction: row;
   padding: 5px 10px;
   margin: 5px;
-  
-}
+  background-color: aliceblue;
+  }
 
 /* Boton para ir al mes siguiente ">"*/
 .next-month-button {
@@ -54,7 +50,7 @@ body {
   flex-direction: row;
   padding: 5px 10px;
   margin: 5px;
-    
+  background-color: aliceblue;
 }
 
 
@@ -82,17 +78,17 @@ body {
 
 /* Color en el dia que estamos */
 .current-day {
-  background-color: #5cd2ff; /* Azul claro */
+  background-color: lightsteelblue;
 }
 
-/* Fonfo de los dias del mes */
+/* Fondo de los dias del mes */
 .selectable-day {
   background-color: floralwhite;
 }
 
 /* Color cuando selecciono un dia */
 .selected-day {
-  background-color: #c4e5c3; /* Verde claro */
+  background-color: cyan;
 }
 
 /* Estilos para el formulario de cita */
