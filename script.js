@@ -6,7 +6,7 @@ const appointmentForm = document.getElementById('appointment-form');
 const backToCalendarBtn = document.getElementById('back-to-calendar');
 
 // Objeto para almacenar los eventos
-let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : {};
+const events = {};
 
 // Función para añadir un evento a un día específico
 function addEventToDay(day, eventName, eventTime) {
@@ -15,7 +15,21 @@ function addEventToDay(day, eventName, eventTime) {
     events[key] = [];
   }
   events[key].push({ name: eventName, time: eventTime });
-  localStorage.setItem('events', JSON.stringify(events)); // Guardar eventos en localStorage
+  setEventAlarm(day, { name: eventName, time: eventTime }); // Llamar a la función para establecer la alarma
+}
+
+// Función para agregar una alarma a un evento específico
+function setEventAlarm(day, event) {
+  const eventTime = new Date(event.time);
+  const currentTime = new Date();
+  const timeDifference = eventTime.getTime() - currentTime.getTime();
+  
+  // Verificar si el evento está en el futuro
+  if (timeDifference > 0) {
+    setTimeout(() => {
+      alert(`¡Es hora para ${event.name}!`);
+    }, timeDifference);
+  }
 }
 
 // Función para mostrar los eventos del día seleccionado
@@ -55,7 +69,6 @@ function deleteEvent(day, eventToDelete) {
   const key = day.toISOString().split('T')[0];
   if (events[key]) {
     events[key] = events[key].filter(event => event !== eventToDelete);
-    localStorage.setItem('events', JSON.stringify(events)); // Actualizar eventos en localStorage
     // Mostrar los eventos actualizados después de eliminar el evento
     showEventsForSelectedDay(day);
     // Actualizar el calendario para reflejar el cambio en los eventos
@@ -63,8 +76,8 @@ function deleteEvent(day, eventToDelete) {
     updateCalendar(currentDate.getFullYear(), currentDate.getMonth()); // Actualizar el calendario con la fecha actual
   }
 }
-    
-// Crear el calendario
+
+// Función para crear el calendario
 function createCalendar() {
   const currentDate = new Date();
   let currentYear = currentDate.getFullYear();
@@ -145,7 +158,7 @@ function createCalendar() {
       daysGrid.appendChild(emptyDayElement);
     }
 
-    // Crear los días del mes
+     // Crear los días del mes
     const lastDayOfMonth = new Date(year, month + 1, 0);
     for (let i = 1; i <= lastDayOfMonth.getDate(); i++) {
       const dayElement = document.createElement('div');
