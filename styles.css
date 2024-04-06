@@ -21,7 +21,7 @@ body {
 
 /* Cambia el color del numero cuando tiene un evento */
 .event-day{
-    color: magenta;
+    color: red; 
 }
 
 /* Boton de borrar evento */
@@ -78,7 +78,7 @@ body {
 
 /* Color en el dia que estamos */
 .current-day {
-  background-color: lightsteelblue;
+  background-color: cyan;
 }
 
 /* Fondo de los dias del mes */
@@ -88,7 +88,7 @@ body {
 
 /* Color cuando selecciono un dia */
 .selected-day {
-  background-color: cyan;
+  background-color: lime;
 }
 
 /* Estilos para el formulario de cita */
