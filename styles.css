@@ -38,8 +38,8 @@ body {
   font-size: 20px;
   display: inline;
   flex-direction: row;
-  padding: 5px 10px;
-  margin: 5px;
+  padding: 8px 12px;
+  margin: 7px;
   background-color: aliceblue;
   }
 
@@ -48,8 +48,8 @@ body {
   font-size: 20px;
   display: inline;
   flex-direction: row;
-  padding: 5px 10px;
-  margin: 5px;
+  padding: 8px 12px;
+  margin: 7px;
   background-color: aliceblue;
 }
 
@@ -162,3 +162,4 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   z-index: 999; /* Asegura que esté encima de otros elementos */
 }
+
