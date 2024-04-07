@@ -1,5 +1,10 @@
-body {
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('campo.jpg');
+body{
+   margin: 5px 5px;
+   padding: 0;
+   align-items: center;
+   justify-content: center;
+   font-size: 15px;
+   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('campo.jpg');
 }
 
 /* Estilos para el calendario */
@@ -41,6 +46,8 @@ body {
   padding: 8px 12px;
   margin: 7px;
   background-color: aliceblue;
+  border: none;
+  border-radius: 10px ;
   }
 
 /* Boton para ir al mes siguiente ">"*/
@@ -51,6 +58,8 @@ body {
   padding: 8px 12px;
   margin: 7px;
   background-color: aliceblue;
+  border: none;
+  border-radius: 10px;
 }
 
 
@@ -125,10 +134,14 @@ body {
 
 #appointment-name {
     font-family: Piedra; /* Fuente de cuando ingresas el evento */
+    border: none;
+    border-radius: 5px;
 }
 
 #appointment-time {
     font-family: Piedra; /* Fuente de cuando ingresas la hora */
+    border: none;
+    border-radius: 5px;
 }
 
 /* Boton 'guardar' del formulario */
@@ -136,7 +149,8 @@ body {
     font-family: Piedra; /* Fuente del boton Guardar */
     font-size: 15px;
     margin-top: 10px;
-    
+    border-radius: 5px;
+    margin: 10px;
 }
 
 /* Boton 'Atras' del formulario */
@@ -144,6 +158,8 @@ body {
     font-family: Piedra; /* Fuente del boton Atras */
     font-size: 15px;
     order: -1;
+    border-radius: 5px;
+    margin: 5px;
 }
 
 /* Estilos para el botón flotante */
@@ -154,7 +170,7 @@ body {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: #007bff; /* Cambia el color de fondo según tu preferencia */
+  background-color: navy;/* #007bff;*/ /* Cambia el color de fondo según tu preferencia */
   color: #fff;
   font-size: 30px;
   border: none;
