@@ -44,8 +44,8 @@ body{
   font-size: 20px;
   display: inline;
   flex-direction: row;
-  padding: 8px 12px;
-  margin: 7px;
+  padding: 10px 12px;
+  margin: 8px;
   background-color: aliceblue;
   border: none;
   border-radius: 10px ;
@@ -56,8 +56,8 @@ body{
   font-size: 20px;
   display: inline;
   flex-direction: row;
-  padding: 8px 12px;
-  margin: 7px;
+  padding: 10px 12px;
+  margin: 8px;
   background-color: aliceblue;
   border: none;
   border-radius: 10px;
@@ -124,8 +124,9 @@ body{
 
 /* Estilos para la lista de eventos que van debajo del calendario */
 #event-list {
-  margin-top: 20px;
+  margin: 25px 10px;
   font-family: Lobster;
+  box-shadow: 2px 4px 4px 4px;
 }
 
 .event {
