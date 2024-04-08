@@ -136,6 +136,7 @@ body{
     display: flex;
     justify-content: space-between;
     align-content: center;
+    border-radius: 5px;
 }
 
 
