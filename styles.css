@@ -122,15 +122,19 @@ body{
   margin-bottom: 5px;
 }
 
+
 /* Estilos para la lista de eventos que van debajo del calendario */
 #event-list {
-   font-family: Lobster;
+   
 }
-
 .event {
-   margin: 15px 2px;
+/* Arriba, derecha, abajo, izquierda */
+   margin: 20px 10px 10px 4px;
+   font-family: Lobster;
    box-shadow: 2px 4px 4px 4px;
 }
+
+
 
 #selected-date,
 #appointment-form {
