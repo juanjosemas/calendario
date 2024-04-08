@@ -9,25 +9,25 @@ body{
 
 /* Estilos para el calendario */
 #calendar {
-  font-family: Piedra;
-  width: 350px;
-  margin: 0;
+   font-family: Piedra;
+   width: 350px;
+   margin: 0;
 }
 
 /* Cabecera del mes */
 .month-header {
-  text-align: center;
-  font-size: 30px;
-  margin-bottom: 20px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-style: italic;
+   text-align: center;
+   font-size: 30px;
+   margin-bottom: 20px;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   font-style: italic;
 }
 
 /* Cambia el color del numero cuando tiene un evento */
 .event-day{
-    color: red; 
+   color: red; 
 }
 
 /* Boton de borrar evento */
@@ -42,85 +42,85 @@ body{
 
 /* Boton para ir al mes anterior "<" */
 .prev-month-button {
-  font-size: 20px;
-  display: inline;
-  flex-direction: row;
-  padding: 10px 12px;
-  margin: 8px;
-  background-color: aliceblue;
-  border: none;
-  border-radius: 10px ;
-  }
+   font-size: 20px;
+   display: inline;
+   flex-direction: row;
+   padding: 10px 12px;
+   margin: 8px;
+   background-color: aliceblue;
+   border: none;
+   border-radius: 10px ;
+}
 
 /* Boton para ir al mes siguiente ">"*/
 .next-month-button {
-  font-size: 20px;
-  display: inline;
-  flex-direction: row;
-  padding: 10px 12px;
-  margin: 8px;
-  background-color: aliceblue;
-  border: none;
-  border-radius: 10px;
+   font-size: 20px;
+   display: inline;
+   flex-direction: row;
+   padding: 10px 12px;
+   margin: 8px;
+   background-color: aliceblue;
+   border: none;
+   border-radius: 10px;
 }
 
 
 .day-names {
-  display: flex;
-  font-style: italic;
+   display: flex;
+   font-style: italic;
 }
 
 .day-name {
-  flex: 1;
-  text-align: center;
-  padding: 5px;
+   flex: 1;
+   text-align: center;
+   padding: 5px;
 }
 
 .days-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 5px;
+   display: grid;
+   grid-template-columns: repeat(7, 1fr);
+   gap: 5px;
 }
 
 /*Los dias del mes para salir redondo*/
 .day {
-  text-align: center;
-  padding: 10px;
-  border: 1px solid #ccc;
-  font-style: italic;
-  border-radius: 5px ;
+   text-align: center;
+   padding: 10px;
+   border: 1px solid #ccc;
+   font-style: italic;
+   border-radius: 5px ;
 }
 
 /* Color en el dia que estamos */
 .current-day {
-  background-color: cyan;
+   background-color: cyan;
 }
 
 /* Fondo de los dias del mes */
 .selectable-day {
-  background-color: floralwhite;
+   background-color: floralwhite;
 }
 
 /* Color cuando selecciono un dia */
 .selected-day {
-  background-color: lime;
+   background-color: lime;
 }
 
 /* Estilos para el formulario de cita */
 #appointment-form {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
+   display: none;
+   flex-direction: column;
+   align-items: center;
+   margin-top: 20px;
 }
 
 #appointment-form h1 {
-  margin-bottom: 10px;
-  font-family: Caveat;
+   margin-bottom: 10px;
+   font-family: Caveat;
 }
 
 #appointment-form label {
-  margin-bottom: 5px;
+   margin-bottom: 5px;
 }
 
 
@@ -130,62 +130,65 @@ body{
 }
 .event {
 /* Arriba, derecha, abajo, izquierda */
-   margin: 20px 10px 10px 4px;
-   font-family: Lobster;
-   box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
+    margin: 20px 10px 10px 4px;
+    font-family: Lobster;
+    box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
 }
 
 
 
 #selected-date,
 #appointment-form {
-  font-family: Piedra; /* Fuente para el concepto evento y hora  */
+   font-family: Piedra; /* Fuente para el concepto evento y hora  */
 }
 
 #appointment-name {
-    font-family: Piedra; /* Fuente de cuando ingresas el evento */
-    border: none;
-    border-radius: 5px;
+   font-family: Piedra; /* Fuente de cuando ingresas el evento */
+   border: none;
+   border-radius: 5px;
 }
 
 #appointment-time {
-    font-family: Piedra; /* Fuente de cuando ingresas la hora */
-    border: none;
-    border-radius: 5px;
+   font-family: Piedra; /* Fuente de cuando ingresas la hora */
+   border: none;
+   border-radius: 5px;
 }
 
 /* Boton 'guardar' del formulario */
 #save-appointment {
-    font-family: Piedra; /* Fuente del boton Guardar */
-    font-size: 15px;
-    margin-top: 10px;
-    border-radius: 5px;
-    margin: 10px;
+   font-family: Piedra; /* Fuente del boton Guardar */
+   font-size: 15px;
+   margin-top: 10px;
+   border-radius: 5px;
+   margin: 10px;
 }
 
 /* Boton 'Atras' del formulario */
 #back-to-calendar {
-    font-family: Piedra; /* Fuente del boton Atras */
-    font-size: 15px;
-    order: -1;
-    border-radius: 5px;
-    margin: 5px;
+   font-family: Piedra; /* Fuente del boton Atras */
+   font-size: 15px;
+   order: -1;
+   border-radius: 5px;
+   margin: 5px;
 }
 
 /* Estilos para el botón flotante */
 .fab {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: navy;/* #007bff;*/ /* Cambia el color de fondo según tu preferencia */
-  color: #fff;
-  font-size: 30px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  z-index: 999; /* Asegura que esté encima de otros elementos */
+   position: fixed;
+   bottom: 20px;
+   right: 20px;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   background-color: navy;
+   color: #fff;
+   font-size: 30px;
+   border: none;
+   cursor: pointer;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+   z-index: 999; /* Asegura que esté encima de otros elementos */
 }
 
