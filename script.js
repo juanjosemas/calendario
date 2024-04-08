@@ -77,25 +77,20 @@ function deleteEvent(day, eventToDelete) {
 
 // Función para mostrar una notificación
 function showNotification(eventName) {
-  if ('Notification' in window) {
-    if (Notification.permission === 'granted') {
-      new Notification('Recordatorio de evento', {
-        body: `¡Es hora de "${eventName}"!`,
-      });
-    } else if (Notification.permission !== 'denied') {
-      Notification.requestPermission().then(function (permission) {
-        if (permission === 'granted') {
-          new Notification('Recordatorio de evento', {
-            body: `¡Es hora de "${eventName}"!`,
-          });
-        }
-      });
-    }
+  if ('Notification' in window && Notification.permission === 'granted') {
+    new Notification('Recordatorio de evento', {
+      body: `¡Es hora de "${eventName}"!`,
+    });
+  } else if ('Notification' in window && Notification.permission !== 'denied') {
+    Notification.requestPermission().then(function (permission) {
+      if (permission === 'granted') {
+        new Notification('Recordatorio de evento', {
+          body: `¡Es hora de "${eventName}"!`,
+        });
+      }
+    });
   }
 }
-
-
-
 
 // Crear el calendario
 function createCalendar() {
