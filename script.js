@@ -16,6 +16,17 @@ function addEventToDay(day, eventName, eventTime) {
   }
   events[key].push({ name: eventName, time: eventTime });
   localStorage.setItem('events', JSON.stringify(events)); // Guardar eventos en localStorage
+
+  // Verificar si la fecha y hora del evento ya ha pasado
+  const eventDateTime = new Date(`${key}T${eventTime}`);
+  const currentTime = new Date();
+  if (eventDateTime > currentTime) {
+    // Configurar la notificación para la fecha y hora del evento
+    const notificationTime = eventDateTime.getTime() - currentTime.getTime();
+    setTimeout(() => {
+      showNotification(eventName);
+    }, notificationTime);
+  }
 }
 
 // Función para mostrar los eventos del día seleccionado
@@ -63,7 +74,29 @@ function deleteEvent(day, eventToDelete) {
     updateCalendar(currentDate.getFullYear(), currentDate.getMonth()); // Actualizar el calendario con la fecha actual
   }
 }
-    
+
+// Función para mostrar una notificación
+function showNotification(eventName) {
+  if ('Notification' in window) {
+    if (Notification.permission === 'granted') {
+      new Notification('Recordatorio de evento', {
+        body: `¡Es hora de "${eventName}"!`,
+      });
+    } else if (Notification.permission !== 'denied') {
+      Notification.requestPermission().then(function (permission) {
+        if (permission === 'granted') {
+          new Notification('Recordatorio de evento', {
+            body: `¡Es hora de "${eventName}"!`,
+          });
+        }
+      });
+    }
+  }
+}
+
+
+
+
 // Crear el calendario
 function createCalendar() {
   const currentDate = new Date();
@@ -86,6 +119,7 @@ function createCalendar() {
     prevMonthButton.textContent ='<';
     prevMonthButton.classList.add('prev-month-button');
     monthHeader.appendChild(prevMonthButton);
+    
     // Evento de clic para ir al mes anterior
     prevMonthButton.addEventListener('click', () => {
       if (month === 0) {
@@ -137,8 +171,8 @@ function createCalendar() {
     let startingDay = firstDayOfMonth.getDay() - 1; // Restar 1 para que el lunes sea el primer día (lunes=1, domingo=0)
     if (startingDay === -1) startingDay = 6; // Si es domingo, cambiarlo a 6
 
-    // Crear espacios en blanco para los días anteriores si el mes no comienza en lunes
-    for (let i = 0; i < startingDay; i++) {
+    // Crear espacios en blanco para los días anteriores si el mes no comienza en lunes  
+   for (let i = 0; i < startingDay; i++) {
       const emptyDayElement = document.createElement('div');
       emptyDayElement.classList.add('day');
       emptyDayElement.classList.add('empty-day');
