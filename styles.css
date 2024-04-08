@@ -131,7 +131,7 @@ body{
 /* Arriba, derecha, abajo, izquierda */
    margin: 20px 10px 10px 4px;
    font-family: Lobster;
-   box-shadow: 2px 4px 4px 4px;
+   box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
 }
 
 
