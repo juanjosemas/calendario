@@ -37,6 +37,7 @@ body{
     color: grey;
     font-style: italic;
     margin: 5px;
+    padding: 3px 5px;
 }
 
 /* Boton para ir al mes anterior "<" */
