@@ -81,7 +81,7 @@ body{
 .days-grid {
    display: grid;
    grid-template-columns: repeat(7, 1fr);
-   gap: 2px;
+   gap: 3px;
 }
 
 /*Los dias del mes para salir redondo*/
@@ -90,7 +90,7 @@ body{
    padding: 10px;
    border: 1px solid #ccc;
    font-style: italic;
-   border-radius: 5px;
+   border-radius: 8px;
 }
 
 /* Color en el dia que estamos */
@@ -113,7 +113,7 @@ body{
    display: none;
    flex-direction: column;
    align-items: center;
-   margin-top: 5px;
+   margin-top: 2px;
 }
 
 #appointment-form h1 {
@@ -140,40 +140,46 @@ body{
     justify-content: space-between;
     align-content: center;
     border-radius: 5px;
+    font-size: 17px;
 }
 
 
-
+/* Formato de Evento y Hora del formulario */
 #selected-date,
 #appointment-form {
-   font-family: Piedra; /* Fuente para el concepto evento y hora  */
+   font-family: Piedra;
+   font-style: italic;
+   font-size: 20px;
 }
 
+/* Formato del ingreso de evento en formulario */
 #ingresar-evento {
-   font-family: Piedra; /* Fuente de cuando ingresas el evento */
+   font-family: Sriracha;
    border: none;
    border-radius: 5px;
    font-size: 1.1rem;
+   font-style: italic;
 }
 
+/* Formato del ingreso de hora en formulario */
 #boton-hora {
-   font-family: Piedra; /* Fuente de cuando ingresas la hora */
+   font-family: Sriracha;
    border: none;
    border-radius: 5px;
+   font-size: 1rem;
 }
 
 /* Boton 'guardar' del formulario */
 #boton-guardar-form {
-   font-family: Piedra; /* Fuente del boton Guardar */
+   font-family: Piedra;
    font-size: 17px;
-  /* margin-top: 10px; */
    border-radius: 5px;
    margin: 0 10px;
 }
 
 /* Boton 'Atras' del formulario */
 #boton-atras-form {
-   font-family: Piedra; /* Fuente del boton Atras */
+   font-family: Piedra;
    font-size: 17px;
    order: -1;
    border-radius: 5px;
