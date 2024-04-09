@@ -8,14 +8,14 @@ body{
 }
 
 /* Estilos para el calendario */
-#calendar {
+#calendario {
    font-family: Piedra;
    width: 350px;
    margin: 0;
 }
 
 /* Cabecera del mes */
-.month-header {
+.nombre-mes {
    text-align: center;
    font-size: 30px;
    margin-bottom: 20px;
@@ -30,8 +30,9 @@ body{
    color: red; 
 }
 
-/* Boton de borrar evento */
-.delete-event-button{
+/* Boton de borrar evento 
+.delete-event-button{ */
+.boton-borrar {
     font-family: Piedra;
     border-radius: 20px;
     color: grey;
@@ -41,7 +42,7 @@ body{
 }
 
 /* Boton para ir al mes anterior "<" */
-.prev-month-button {
+.mes-anterior {
    font-size: 20px;
    display: inline;
    flex-direction: row;
@@ -53,7 +54,7 @@ body{
 }
 
 /* Boton para ir al mes siguiente ">"*/
-.next-month-button {
+.mes-siguiente {
    font-size: 20px;
    display: inline;
    flex-direction: row;
@@ -64,7 +65,7 @@ body{
    border-radius: 10px;
 }
 
-
+/* Nombre de los dias de la semana */
 .day-names {
    display: flex;
    font-style: italic;
@@ -76,10 +77,11 @@ body{
    padding: 5px;
 }
 
+/* Forma para cuadriculas del calendario */
 .days-grid {
    display: grid;
    grid-template-columns: repeat(7, 1fr);
-   gap: 5px;
+   gap: 2px;
 }
 
 /*Los dias del mes para salir redondo*/
@@ -88,7 +90,7 @@ body{
    padding: 10px;
    border: 1px solid #ccc;
    font-style: italic;
-   border-radius: 5px ;
+   border-radius: 5px;
 }
 
 /* Color en el dia que estamos */
@@ -106,17 +108,18 @@ body{
    background-color: lime;
 }
 
-/* Estilos para el formulario de cita */
+/* Estilos para el formulario de cita y colocacion del formulario */
 #appointment-form {
    display: none;
    flex-direction: column;
    align-items: center;
-   margin-top: 20px;
+   margin-top: 5px;
 }
 
 #appointment-form h1 {
    margin-bottom: 10px;
    font-family: Caveat;
+   font-size: 40px;
 }
 
 #appointment-form label {
@@ -146,38 +149,39 @@ body{
    font-family: Piedra; /* Fuente para el concepto evento y hora  */
 }
 
-#appointment-name {
+#ingresar-evento {
    font-family: Piedra; /* Fuente de cuando ingresas el evento */
    border: none;
    border-radius: 5px;
+   font-size: 1.1rem;
 }
 
-#appointment-time {
+#boton-hora {
    font-family: Piedra; /* Fuente de cuando ingresas la hora */
    border: none;
    border-radius: 5px;
 }
 
 /* Boton 'guardar' del formulario */
-#save-appointment {
+#boton-guardar-form {
    font-family: Piedra; /* Fuente del boton Guardar */
-   font-size: 15px;
-   margin-top: 10px;
+   font-size: 17px;
+  /* margin-top: 10px; */
    border-radius: 5px;
-   margin: 10px;
+   margin: 0 10px;
 }
 
 /* Boton 'Atras' del formulario */
-#back-to-calendar {
+#boton-atras-form {
    font-family: Piedra; /* Fuente del boton Atras */
-   font-size: 15px;
+   font-size: 17px;
    order: -1;
    border-radius: 5px;
-   margin: 5px;
+   margin: 0 50px;
 }
 
 /* Estilos para el botón flotante */
-.fab {
+.flotante {
    position: fixed;
    bottom: 20px;
    right: 20px;
