@@ -1,9 +1,9 @@
 // Obtener el elemento del calendario
-const calendarElement = document.getElementById('calendar');
+const calendarElement = document.getElementById('calendario');
 // Obtener el elemento del formulario de cita
 const appointmentForm = document.getElementById('appointment-form');
 // Obtener el botón de volver al calendario
-const backToCalendarBtn = document.getElementById('back-to-calendar');
+const backToCalendarBtn = document.getElementById('boton-atras-form');
 
 // Objeto para almacenar los eventos
 let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : {};
@@ -36,7 +36,7 @@ function showEventsForSelectedDay(selectedDay) {
       // Agregar un botón de "Borrar" para eliminar el evento
       const deleteButton = document.createElement('button');
       deleteButton.textContent = 'Borrar';
-      deleteButton.classList.add('delete-event-button');
+      deleteButton.classList.add('boton-borrar');
       deleteButton.addEventListener('click', () => {
         deleteEvent(selectedDay, event);
       });
@@ -78,13 +78,13 @@ function createCalendar() {
 
     // Crear la cabecera del mes
     const monthHeader = document.createElement('div');
-    monthHeader.classList.add('month-header');
+    monthHeader.classList.add('nombre-mes');
     monthHeader.textContent = `${monthNames[month]} ${year}`;
 
     // Crear el botón de "Atrás"
     const prevMonthButton = document.createElement('button');
     prevMonthButton.textContent ='<';
-    prevMonthButton.classList.add('prev-month-button');
+    prevMonthButton.classList.add('mes-anterior');
     monthHeader.appendChild(prevMonthButton);
     // Evento de clic para ir al mes anterior
     prevMonthButton.addEventListener('click', () => {
@@ -100,7 +100,7 @@ function createCalendar() {
     // Crear el botón de "Siguiente"
     const nextMonthButton = document.createElement('button');
     nextMonthButton.textContent = '>';
-    nextMonthButton.classList.add('next-month-button');
+    nextMonthButton.classList.add('mes-siguiente');
     monthHeader.appendChild(nextMonthButton);
     // Evento de clic para ir al mes siguiente
     nextMonthButton.addEventListener('click', () => {
@@ -190,7 +190,7 @@ function createCalendar() {
   }
 
   // Obtener el botón flotante
-  const addEventFabButton = document.getElementById('add-event-fab');
+  const addEventFabButton = document.getElementById('boton-flotante');
 
   // Evento de clic para ir a la pantalla de agregar evento
   addEventFabButton.addEventListener('click', () => {
@@ -206,19 +206,19 @@ function createCalendar() {
   });
 
   // Evento de clic para guardar la cita
-  document.getElementById('save-appointment').addEventListener('click', () => {
+  document.getElementById('boton-guardar-form').addEventListener('click', () => {
     const selectedDayElement = document.querySelector('.selected-day');
     if (selectedDayElement) {
       const selectedDay = new Date(currentYear, currentMonth, parseInt(selectedDayElement.textContent));
-      const appointmentName = document.getElementById('appointment-name').value;
-      const appointmentTime = document.getElementById('appointment-time').value;
+      const appointmentName = document.getElementById('ingresar-evento').value;
+      const appointmentTime = document.getElementById('boton-hora').value;
       addEventToDay(selectedDay, appointmentName, appointmentTime);
       // Mostrar los eventos del día seleccionado
       showEventsForSelectedDay(selectedDay);
     }
     // Limpiar los campos después de guardar el evento
-    document.getElementById('appointment-name').value = ''; // Limpiar el campo de nombre de evento
-    document.getElementById('appointment-time').value = ''; // Limpiar el campo de hora de evento
+    document.getElementById('ingresar-evento').value = ''; // Limpiar el campo de nombre de evento
+    document.getElementById('boton-hora').value = ''; // Limpiar el campo de hora de evento
     // Ocultar el formulario de cita
     appointmentForm.style.display = 'none';
     // Mostrar el calendario
