@@ -109,7 +109,7 @@ body{
 
 /* Color cuando selecciono un dia */
 .selected-day {
-   background-color: lime;
+   background-color: darkgrey;
 }
 
 /* Estilos para el formulario de cita y colocacion del formulario */
