@@ -117,13 +117,13 @@ body{
    display: none;
    flex-direction: column;
    align-items: center;
-   margin-top: 2px;
+   margin: 0;
 }
 
 #appointment-form h1 {
    margin-bottom: 10px;
    font-family: Caveat;
-   font-size: 40px;
+   font-size: 35px;
 }
 
 #appointment-form label {
