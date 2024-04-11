@@ -29,6 +29,10 @@ body{
    font-style: italic;
 }
 
+.nombre-mes::first-letter {
+    /* color: blue; */
+}
+
 /* Cambia el color del numero cuando tiene un evento */
 .event-day{
    color: red; 
@@ -73,6 +77,9 @@ body{
 .day-names {
    display: flex;
    font-style: italic;
+   font-family: Yellowtail;
+   font-size: 20px;
+   /* font-weight: bold; */
 }
 
 .day-name {
