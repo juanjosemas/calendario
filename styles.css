@@ -76,10 +76,10 @@ body{
 /* Nombre de los dias de la semana */
 .day-names {
    display: flex;
-   font-style: italic;
    font-family: Yellowtail;
-   font-size: 20px;
-   /* font-weight: bold; */
+   font-size: 18px;
+/* Trazo grueso dias de la semana*/
+   font-weight: bold;
 }
 
 .day-name {
@@ -227,8 +227,3 @@ body{
     font-style: italic;
     color: black;
 }
-
-/*.tiempo{
-    letter-spacing: 2px;
-    font-size: 15px;
-}*/
