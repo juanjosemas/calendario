@@ -15,7 +15,7 @@ body{
 #calendario {
    font-family: Piedra;
    width: 350px;
-   margin: 0;
+   margin: 20px 0;
 }
 
 /* Cabecera del mes */
@@ -212,4 +212,23 @@ body{
    cursor: pointer;
    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
    z-index: 999; /* Asegura que esté encima de otros elementos */
+}
+
+.ico{
+    margin: 0;
+    display: flex;
+    box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
+}
+
+.reloj{
+    display:flex;
+    margin: -35px 30px;
+    font-family: Piedra;
+    font-style: italic;
+    color: black;
+}
+
+.tiempo{
+    letter-spacing: 2px;
+    font-size: 15px;
 }
