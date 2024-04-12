@@ -222,13 +222,13 @@ body{
 
 .reloj{
     display:flex;
-    margin: -35px 30px;
+    margin: -35px 35px;
     font-family: Piedra;
     font-style: italic;
     color: black;
 }
 
-.tiempo{
+/*.tiempo{
     letter-spacing: 2px;
     font-size: 15px;
-}
+}*/
