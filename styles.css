@@ -49,9 +49,9 @@ body{
     padding: 3px 5px;
 }
 
-/* Boton para ir al mes anterior "<" */
+/* Boton para ir al mes anterior "◀" */
 .mes-anterior {
-   font-size: 20px;
+   font-size: 15px;
    display: inline;
    flex-direction: row;
    padding: 10px 12px;
@@ -61,9 +61,9 @@ body{
    border-radius: 10px ;
 }
 
-/* Boton para ir al mes siguiente ">"*/
+/* Boton para ir al mes siguiente "▶"*/
 .mes-siguiente {
-   font-size: 20px;
+   font-size: 15px;
    display: inline;
    flex-direction: row;
    padding: 10px 12px;
@@ -95,18 +95,24 @@ body{
    gap: 3px;
 }
 
-/*Los dias del mes para salir redondo*/
+/*Los dias del mes para salir redondo y color de los numeros*/
 .day {
    text-align: center;
    padding: 10px;
    border: 1px solid #ccc;
    font-style: italic;
    border-radius: 8px;
+   font-size: 14px;
 }
 
 /* Color en el dia que estamos */
 .current-day {
-   background-color: cyan;
+   background-color: black;/*cyan;*/
+   border-radius: 50%;
+   color: white;
+   border: 3px solid red;
+   box-shadow: 
+   
 }
 
 /* Fondo de los dias del mes */
