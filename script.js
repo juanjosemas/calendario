@@ -83,7 +83,7 @@ function createCalendar() {
 
     // Crear el botón de "Atrás"
     const prevMonthButton = document.createElement('button');
-    prevMonthButton.textContent ='<';
+    prevMonthButton.textContent ='◀';
     prevMonthButton.classList.add('mes-anterior');
     monthHeader.appendChild(prevMonthButton);
     // Evento de clic para ir al mes anterior
@@ -99,7 +99,7 @@ function createCalendar() {
 
     // Crear el botón de "Siguiente"
     const nextMonthButton = document.createElement('button');
-    nextMonthButton.textContent = '>';
+    nextMonthButton.textContent = '▶';
     nextMonthButton.classList.add('mes-siguiente');
     monthHeader.appendChild(nextMonthButton);
     // Evento de clic para ir al mes siguiente
