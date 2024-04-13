@@ -30,12 +30,12 @@ body{
 }
 
 .nombre-mes::first-letter {
-    /* color: blue; */
+   /* color: red; */
 }
 
 /* Cambia el color del numero cuando tiene un evento */
 .event-day{
-   color: red; 
+   color: red;
 }
 
 /* Boton de borrar evento 
@@ -107,11 +107,11 @@ body{
 
 /* Color en el dia que estamos */
 .current-day {
-   background-color: black;/*cyan;*/
+   background-color: black;
    border-radius: 50%;
    color: white;
    border: 3px solid red;
-   box-shadow: 
+   box-shadow: 0 0 0 3px black;
    
 }
 
@@ -228,8 +228,9 @@ body{
 
 .reloj{
     display:flex;
-    margin: -35px 35px;
+    margin: -45px 35px;
     font-family: Piedra;
     font-style: italic;
     color: black;
+    font-size: 20px;
 }
