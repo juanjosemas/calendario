@@ -23,6 +23,7 @@ body{
    text-align: center;
    font-size: 30px;
    margin-bottom: 20px;
+   margin-top: 30px;
    flex-direction: column;
    align-items: center;
    justify-content: center;
@@ -51,26 +52,31 @@ body{
 
 /* Boton para ir al mes anterior "◀" */
 .mes-anterior {
-   font-size: 15px;
-   display: inline;
+   font-size: 13px;
+   display: flex;
    flex-direction: row;
-   padding: 10px 12px;
-   margin: 8px;
-   background-color: aliceblue;
-   border: none;
+   padding: 10px 10px;
+   margin-top: -40px;
+   margin-bottom: 40px;
+   margin-left: 8px;
+   background-color: cyan;
+   border: 3px solid red;
    border-radius: 10px ;
+   box-shadow: 0 0 0 4px black;
 }
 
 /* Boton para ir al mes siguiente "▶"*/
 .mes-siguiente {
-   font-size: 15px;
-   display: inline;
+   font-size: 13px;
+   display: flex;
    flex-direction: row;
-   padding: 10px 12px;
-   margin: 8px;
-   background-color: aliceblue;
-   border: none;
+   padding: 10px 10px;
+   margin-left: 300px;
+   margin-top: -85px;
+   background-color: cyan;
+   border: 3px solid red;
    border-radius: 10px;
+   box-shadow: 0 0 0 4px black;
 }
 
 /* Nombre de los dias de la semana */
@@ -232,5 +238,5 @@ body{
     font-family: Piedra;
     font-style: italic;
     color: black;
-    font-size: 20px;
+    font-size: 19px;
 }
