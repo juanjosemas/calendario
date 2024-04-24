@@ -38,7 +38,11 @@ function showEventsForSelectedDay(selectedDay) {
       deleteButton.textContent = 'Borrar';
       deleteButton.classList.add('boton-borrar');
       deleteButton.addEventListener('click', () => {
-        deleteEvent(selectedDay, event);
+        // Mostrar confirmación antes de borrar
+        const confirmed = confirm('¿Estás seguro que quieres borrar este evento?');
+        if (confirmed) {
+          deleteEvent(selectedDay, event);
+        }
       });
       eventItem.appendChild(deleteButton);
 
@@ -148,6 +152,7 @@ function createCalendar() {
     // Crear los días del mes
     const lastDayOfMonth = new Date(year, month + 1, 0);
     for (let i = 1; i <= lastDayOfMonth.getDate(); i++) {
+      
       const dayElement = document.createElement('div');
       dayElement.classList.add('day');
       dayElement.textContent = i;
@@ -237,27 +242,28 @@ function updateCalendar(year, month) {
   // Tu código para actualizar el calendario iría aquí
 }
 
-      // RELOJ
-const $tiempo=document.querySelector('.tiempo'),
-$fecha= document.querySelector('.fecha');
+// RELOJ
+const $tiempo = document.querySelector('.tiempo');
+const $fecha = document.querySelector('.fecha');
 
-function Relojdigital(){
-    let f=new Date(),
-    dia= f.getDate(),
-    mes= f.getMonth()+1,
-    anio= f.getFullYear(),
-    diaSemana=f.getDay();
+function Relojdigital() {
+  let f = new Date();
+  let dia = f.getDate();
+  let mes = f.getMonth() + 1;
+  let anio = f.getFullYear();
+  let diaSemana = f.getDay();
 
-    dia= ('0'+dia).slice(-2);
-    mes=('0'+mes).slice(-2)
+  dia = ('0' + dia).slice(-2);
+  mes = ('0' + mes).slice(-2);
 
-    let timeString= f.toLocaleTimeString();
-    $tiempo.innerHTML=timeString;
+  let timeString = f.toLocaleTimeString();
+  $tiempo.innerHTML = timeString;
 
-    let semana=['DOMINGO','LUNES','MARTES','MIERCOLES','JUEVES','VIERNES','SABADO'];
-    let showSemana= (semana[diaSemana])
-    $fecha.innerHTML = `${showSemana} ${dia}-${mes}-${anio}`
+  let semana = ['DOMINGO', 'LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO'];
+  let showSemana = semana[diaSemana];
+  $fecha.innerHTML = `${showSemana} ${dia}-${mes}-${anio}`;
 }
-setInterval(() =>{
-    Relojdigital()
-},1000);
+
+setInterval(() => {
+  Relojdigital();
+}, 1000);
