@@ -48,6 +48,7 @@ h1{
     font-style: italic;
     margin: 5px;
     padding: 3px 5px;
+    box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
 }
 
 /* Boton para ir al mes anterior "◀" */
@@ -60,9 +61,9 @@ h1{
    margin-bottom: 40px;
    margin-left: 8px;
    background-color: cyan;
-   border: 3px solid red;
+   border: 3px solid black;
    border-radius: 10px ;
-   box-shadow: 0 0 0 4px black;
+   box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
 }
 
 /* Boton para ir al mes siguiente "▶"*/
@@ -74,9 +75,9 @@ h1{
    margin-left: 300px;
    margin-top: -85px;
    background-color: cyan;
-   border: 3px solid red;
+   border: 3px solid black;
    border-radius: 10px;
-   box-shadow: 0 0 0 4px black;
+   box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
 }
 
 /* Nombre de los dias de la semana */
@@ -182,6 +183,7 @@ h1{
    border-radius: 5px;
    font-size: 1rem;
    font-style: italic;
+   box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
 }
 
 /* Formato del ingreso de hora en formulario */
@@ -190,6 +192,7 @@ h1{
    border: none;
    border-radius: 5px;
    font-size: 0.9rem;
+   box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
 }
 
 /* Boton 'guardar' del formulario */
@@ -224,7 +227,7 @@ h1{
    font-size: 30px;
    border: none;
    cursor: pointer;
-   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+   box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
    z-index: 999; /* Asegura que esté encima de otros elementos */
 }
 
