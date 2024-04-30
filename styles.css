@@ -1,5 +1,5 @@
 body{
-   margin: 0 5px;
+   margin: 5px 5px;
    padding: 0;
    align-items: center;
    justify-content: center;
@@ -8,16 +8,11 @@ body{
    background-repeat: no-repeat;
    background-position: center;
    background-attachment: fixed;
-   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('img/playa.jpg');
+   background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('img/almendro.jpg');
 }
 
-.h1{
+h1{
     text-decoration: underline;
-    text-align: center;
-    font-size: 20px;
-    font-family: Piedra;
-    font-style: italic;
-    margin-top: 0;
 }
 
 /* Estilos para el calendario */
@@ -64,7 +59,6 @@ body{
     margin: 5px;
     padding: 3px 5px;
     box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
-    
 }
 
 /* Boton para ir al mes anterior "◀" */
@@ -246,3 +240,37 @@ body{
    box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
    z-index: 999; /* Asegura que esté encima de otros elementos */
 }
+
+.reloj{
+    display:flex;
+    margin: -45px 35px;
+    font-family: Piedra;
+    font-style: italic;
+    color: black;
+    font-size: 19px;
+}
+
+.ico{
+				 border-radius: 50%; 
+				 margin: 0;
+				 animation-name: logo;
+				 animation-duration: 3s;
+			 /*	transform: rotate(0deg);*/
+		  transition: all 0.5s ease-in-out;
+		  background-color: black;
+		  border: 2px solid red;
+    box-shadow: 0 0 0 3px black;
+}
+
+@keyframes logo{
+   from{
+     opacity: 0;
+     transform: scale(0.5) rotate(0deg);
+}
+     
+    to{
+      opacity: 1;
+      transform: scale(1) rotate(1440deg);
+    }
+}
+
