@@ -33,7 +33,7 @@ function showEventsForSelectedDay(selectedDay) {
       eventInfo.textContent = `${event.name} - ${event.time}`;
       eventItem.appendChild(eventInfo);
 
-      // Agregar un botón de "Editar" para editar el evento
+// Agregar un botón de "Editar" para editar el evento
       const editButton = document.createElement('button');
       editButton.textContent = 'Editar';
       editButton.classList.add('boton-editar');
@@ -41,6 +41,9 @@ function showEventsForSelectedDay(selectedDay) {
         editEvent(selectedDay, event);
       });
       eventItem.appendChild(editButton);
+
+
+
 
       // Agregar un botón de "Borrar" para eliminar el evento
       const deleteButton = document.createElement('button');
@@ -77,6 +80,8 @@ function deleteEvent(day, eventToDelete) {
   }
 }
 
+
+
 // Función para editar un evento seleccionado
 function editEvent(day, eventToEdit) {
   const key = day.toISOString().split('T')[0];
@@ -96,7 +101,7 @@ function editEvent(day, eventToEdit) {
     }
   }
 }
-
+    
 // Crear el calendario
 function createCalendar() {
   const currentDate = new Date();
@@ -270,3 +275,29 @@ createCalendar();
 function updateCalendar(year, month) {
   // Tu código para actualizar el calendario iría aquí
 }
+
+// RELOJ
+const $tiempo = document.querySelector('.tiempo');
+const $fecha = document.querySelector('.fecha');
+
+function Relojdigital() {
+  let f = new Date();
+  let dia = f.getDate();
+  let mes = f.getMonth() + 1;
+  let anio = f.getFullYear();
+  let diaSemana = f.getDay();
+
+  dia = ('0' + dia).slice(-2);
+  mes = ('0' + mes).slice(-2);
+
+  let timeString = f.toLocaleTimeString();
+  $tiempo.innerHTML = timeString;
+
+  let semana = ['DOMINGO', 'LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO'];
+  let showSemana = semana[diaSemana];
+  $fecha.innerHTML = `${showSemana} ${dia}-${mes}-${anio}`;
+}
+
+setInterval(() => {
+  Relojdigital();
+}, 1000);
