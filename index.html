@@ -21,7 +21,16 @@
 
 <body>
 
- <div class="h1">Horarios Hotel</div>
+<!-- Icono en el calendario -->
+<img src="img/Juanjo.ico"class="ico"width="25">
+
+<!-- Reloj -->
+<div class="reloj">
+ <p class="tiempo"></p>
+</div> 
+
+
+
 
 <!-- Calendario -->
    <div id="calendario"></div>
@@ -31,15 +40,15 @@
     
 <!-- Formulario y titulo -->   
    <div id="appointment-form" style="display: none;"> 
-    <h1>"Agregar horario"</h1>
+    <h1>"Agregar evento"</h1>
        <p id="selected-date"></p> 
 <!-- Para poner evento con texto -->  
-    <label for="ingresar-evento">Horario:</label>
+    <label for="ingresar-evento">Evento:</label>
     <input type="text" id="ingresar-evento">
      <br><br>
-<!-- Para poner hora con texto --> 
-<label for="boton-hora">Horas:</label>
-     <input  type="text"id="boton-hora">
+<!-- Para poner hora con reloj --> 
+<label for="boton-hora">Hora:</label>
+     <input  type="time"id="boton-hora">
      <br><br>
      <button id="boton-atras-form">Atrás</button>
      <button id="boton-guardar-form">Guardar</button>
@@ -54,6 +63,7 @@
 <!-- Enlace para el JavaScript -->
 <script src="script.js"></script>
  
+<script src="reloj.js"></script>
 
 </body>
 </html>
