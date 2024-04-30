@@ -33,6 +33,15 @@ function showEventsForSelectedDay(selectedDay) {
       eventInfo.textContent = `${event.name} - ${event.time}`;
       eventItem.appendChild(eventInfo);
 
+      // Agregar un botón de "Editar" para editar el evento
+      const editButton = document.createElement('button');
+      editButton.textContent = 'Editar';
+      editButton.classList.add('boton-editar');
+      editButton.addEventListener('click', () => {
+        editEvent(selectedDay, event);
+      });
+      eventItem.appendChild(editButton);
+
       // Agregar un botón de "Borrar" para eliminar el evento
       const deleteButton = document.createElement('button');
       deleteButton.textContent = 'Borrar';
@@ -67,7 +76,27 @@ function deleteEvent(day, eventToDelete) {
     updateCalendar(currentDate.getFullYear(), currentDate.getMonth()); // Actualizar el calendario con la fecha actual
   }
 }
-    
+
+// Función para editar un evento seleccionado
+function editEvent(day, eventToEdit) {
+  const key = day.toISOString().split('T')[0];
+  if (events[key]) {
+    // Lógica para editar el evento seleccionado, por ejemplo, abrir un formulario de edición
+    const eventName = prompt('Ingrese el nuevo nombre del evento:', eventToEdit.name);
+    const eventTime = prompt('Ingrese la nueva hora del evento:', eventToEdit.time);
+    if (eventName !== null && eventTime !== null) {
+      // Actualizar el evento en el arreglo de eventos
+      const index = events[key].indexOf(eventToEdit);
+      if (index !== -1) {
+        events[key][index] = { name: eventName, time: eventTime };
+        localStorage.setItem('events', JSON.stringify(events)); // Actualizar eventos en localStorage
+        // Mostrar los eventos actualizados después de editar el evento
+        showEventsForSelectedDay(day);
+      }
+    }
+  }
+}
+
 // Crear el calendario
 function createCalendar() {
   const currentDate = new Date();
@@ -241,29 +270,3 @@ createCalendar();
 function updateCalendar(year, month) {
   // Tu código para actualizar el calendario iría aquí
 }
-
-// RELOJ
-const $tiempo = document.querySelector('.tiempo');
-const $fecha = document.querySelector('.fecha');
-
-function Relojdigital() {
-  let f = new Date();
-  let dia = f.getDate();
-  let mes = f.getMonth() + 1;
-  let anio = f.getFullYear();
-  let diaSemana = f.getDay();
-
-  dia = ('0' + dia).slice(-2);
-  mes = ('0' + mes).slice(-2);
-
-  let timeString = f.toLocaleTimeString();
-  $tiempo.innerHTML = timeString;
-
-  let semana = ['DOMINGO', 'LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO'];
-  let showSemana = semana[diaSemana];
-  $fecha.innerHTML = `${showSemana} ${dia}-${mes}-${anio}`;
-}
-
-setInterval(() => {
-  Relojdigital();
-}, 1000);
