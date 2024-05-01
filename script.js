@@ -278,7 +278,6 @@ function updateCalendar(year, month) {
 
 // RELOJ
 const $tiempo = document.querySelector('.tiempo');
-const $fecha = document.querySelector('.fecha');
 
 function Relojdigital() {
   let f = new Date();
@@ -287,17 +286,9 @@ function Relojdigital() {
   let anio = f.getFullYear();
   let diaSemana = f.getDay();
 
-  dia = ('0' + dia).slice(-2);
-  mes = ('0' + mes).slice(-2);
-
   let timeString = f.toLocaleTimeString();
   $tiempo.innerHTML = timeString;
-
-  let semana = ['DOMINGO', 'LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO'];
-  let showSemana = semana[diaSemana];
-  $fecha.innerHTML = `${showSemana} ${dia}-${mes}-${anio}`;
 }
-
 setInterval(() => {
   Relojdigital();
 }, 1000);
