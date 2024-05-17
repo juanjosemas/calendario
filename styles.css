@@ -274,3 +274,17 @@ h1{
     }
 }
 
+
+#notificaciones { 
+      position: fixed; 
+      top: 0; 
+      right: 0; 
+      background-color: #fff; 
+      padding: 10px; 
+      border: 1px solid #ddd; 
+      border-radius: 5px; 
+      width: 200px; 
+      height: 100px; 
+      overflow-y: auto;
+      display: none;
+}
