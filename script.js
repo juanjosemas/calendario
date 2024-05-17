@@ -288,7 +288,40 @@ function Relojdigital() {
 
   let timeString = f.toLocaleTimeString();
   $tiempo.innerHTML = timeString;
+  
+  
+  
+  function Relojdigital() {
+  const events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : {};
+  const currentDay = new Date();
+  const currentHour = currentDay.getHours();
+  const currentMinute = currentDay.getMinutes();
+
+  Object.keys(events).forEach((key) => {
+    const event = events[key];
+    const eventDay = new Date(key);
+    const eventHour = eventDay.getHours();
+    const eventMinute = eventDay.getMinutes();
+
+    if (eventDay.toDateString() === currentDay.toDateString() && eventHour === currentHour && eventMinute === currentMinute) {
+      // Enviar notificación al usuario
+      Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+          const notification = new Notification('Evento', {
+            body: `El evento "${event.name}" comienza ahora.`,
+            icon: 'img/huracan.jpeg'
+          });
+        }
+      });
+    }
+  });
+}
+
 }
 setInterval(() => {
   Relojdigital();
 }, 1000);
+
+
+ 
+ 
