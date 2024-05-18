@@ -267,47 +267,52 @@ updateCalendar(currentYear, currentMonth);
 // Crear el calendario
 createCalendar();
 
+// Solicitar permiso para notificaciones al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+  if ('Notification' in window) {
+    Notification.requestPermission().then(permission => {
+      if (permission === 'granted') {
+        console.log('Permiso de notificación concedido.');
+      } else {
+        console.log('Permiso de notificación denegado.');
+      }
+    });
+  } else {
+    console.log('Las notificaciones no son soportadas en este navegador.');
+  }
+});
 
-// RELOJ
+// Función para enviar notificaciones
+function sendNotification(event) {
+  if (Notification.permission === 'granted') {
+    new Notification('Recordatorio de Evento', {
+      body: `El evento "${event.name}" comienza ahora a las ${event.time}.`,
+      icon: 'img/huracan.jpeg' // Puedes cambiar esto a la ruta de tu icono
+    });
+  }
+}
+
+// Comprobación de eventos próximos
 const $tiempo = document.querySelector('.tiempo');
 
 function Relojdigital() {
-  let f = new Date();
-  let timeString = f.toLocaleTimeString();
+  const f = new Date();
+  const currentDateString = f.toISOString().split('T')[0];
+  const currentHour = f.getHours();
+  const currentMinute = f.getMinutes();
+  const timeString = f.toLocaleTimeString();
   $tiempo.innerHTML = timeString;
-  
-  const events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : {};
-  const currentDay = new Date();
-  const currentHour = currentDay.getHours();
-  const currentMinute = currentDay.getMinutes();
 
-  Object.keys(events).forEach((key) => {
-    const eventDay = new Date(key);
-    if (eventDay.toDateString() === currentDay.toDateString()) {
-      events[key].forEach(event => {
-        const [eventHour, eventMinute] = event.time.split(':').map(Number);
-        if (eventHour === currentHour && eventMinute === currentMinute) {
-          // Enviar notificación al usuario
-          
-          
-   // Solicitar permisos de notificación
-  if (Notification.permission !== 'granted') {
-    Notification.requestPermission();
-  }      
-          Notification.requestPermission().then(permission => {
-            if (permission === 'granted') {
-              new Notification('Evento', {
-                body: `El evento "${event.name}" comienza ahora.`,
-                icon: 'img/huracan.jpeg'
-              });
-            }
-          });
-        }
-      });
-    }
-  });
+  if (events[currentDateString]) {
+    events[currentDateString].forEach(event => {
+      const [eventHour, eventMinute] = event.time.split(':').map(Number);
+      if (eventHour === currentHour && eventMinute === currentMinute) {
+        sendNotification(event);
+      }
+    });
+  }
 }
 
-setInterval(() => {
-  Relojdigital();
-}, 1000);
+setInterval(Relojdigital, 1000);
+
+
