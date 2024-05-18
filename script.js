@@ -96,7 +96,7 @@ function editEvent(day, eventToEdit) {
     }
   }
 }
-    
+
 // Crear el calendario
 function createCalendar() {
   const currentDate = new Date();
@@ -116,7 +116,7 @@ function createCalendar() {
 
     // Crear el botón de "Atrás"
     const prevMonthButton = document.createElement('button');
-    prevMonthButton.textContent ='◀';
+    prevMonthButton.textContent = '◀';
     prevMonthButton.classList.add('mes-anterior');
     monthHeader.appendChild(prevMonthButton);
     // Evento de clic para ir al mes anterior
@@ -179,89 +179,88 @@ function createCalendar() {
     }
 
     // Crear los días del mes
-const lastDayOfMonth = new Date(year, month + 1, 0);
-for (let i = 1; i <= lastDayOfMonth.getDate(); i++) {
-  
-  const dayElement = document.createElement('div');
-  dayElement.classList.add('day');
-  dayElement.textContent = i;
+    const lastDayOfMonth = new Date(year, month + 1, 0);
+    for (let i = 1; i <= lastDayOfMonth.getDate(); i++) {
 
-  const key = new Date(year, month, i).toISOString().split('T')[0];
-  if (events[key] && events[key].length > 0) {
-    dayElement.classList.add('event-day'); // Agregar clase 'event-day' si hay eventos en este día
+      const dayElement = document.createElement('div');
+      dayElement.classList.add('day');
+      dayElement.textContent = i;
+
+      const key = new Date(year, month, i).toISOString().split('T')[0];
+      if (events[key] && events[key].length > 0) {
+        dayElement.classList.add('event-day'); // Agregar clase 'event-day' si hay eventos en este día
+      }
+
+      // Agregar clase 'current-day' al día actual
+      if (currentDate.getDate() === i && month === currentDate.getMonth() && year === currentDate.getFullYear()) {
+        dayElement.classList.add('current-day');
+      } else {
+        dayElement.classList.add('selectable-day'); // Agregar clase a los días seleccionables
+      }
+
+      // Evento de clic para seleccionar el día
+      dayElement.addEventListener('click', () => {
+        // Remover la clase de los otros días seleccionados
+        const selectedDays = document.querySelectorAll('.selected-day');
+        selectedDays.forEach(selectedDay => {
+          selectedDay.classList.remove('selected-day');
+        });
+        // Agregar la clase al día seleccionado
+        dayElement.classList.add('selected-day');
+        // Mostrar los eventos del día seleccionado
+        showEventsForSelectedDay(new Date(year, month, parseInt(dayElement.textContent)));
+      });
+      daysGrid.appendChild(dayElement);
+    }
+    calendarElement.appendChild(daysGrid);
   }
 
-  // Agregar clase 'current-day' al día actual
-  if (currentDate.getDate() === i && month === currentDate.getMonth() && year === currentDate.getFullYear()) {
-    dayElement.classList.add('current-day');
-  } else {
-    dayElement.classList.add('selectable-day'); // Agregar clase a los días seleccionables
+  // Función para mostrar el formulario de cita
+  function showAppointmentForm() {
+    // Ocultar el calendario
+    calendarElement.style.display = 'none';
+    // Mostrar el formulario de cita
+    appointmentForm.style.display = 'block';
   }
 
-  // Evento de clic para seleccionar el día
-  dayElement.addEventListener('click', () => {
-    // Remover la clase de los otros días seleccionados
-    const selectedDays = document.querySelectorAll('.selected-day');
-    selectedDays.forEach(selectedDay => {
-      selectedDay.classList.remove('selected-day');
-    });
-    // Agregar la clase al día seleccionado
-    dayElement.classList.add('selected-day');
-    // Mostrar los eventos del día seleccionado
-    showEventsForSelectedDay(new Date(year, month, parseInt(dayElement.textContent)));
+  // Obtener el botón flotante
+  const addEventFabButton = document.getElementById('boton-flotante');
+
+  // Evento de clic para ir a la pantalla de agregar evento
+  addEventFabButton.addEventListener('click', () => {
+    showAppointmentForm();
   });
-  daysGrid.appendChild(dayElement);
-}
-calendarElement.appendChild(daysGrid);
-}
 
-// Función para mostrar el formulario de cita
-function showAppointmentForm() {
-  // Ocultar el calendario
-  calendarElement.style.display = 'none';
-  // Mostrar el formulario de cita
-  appointmentForm.style.display = 'block';
-}
+  // Función para volver al calendario desde el formulario de cita
+  backToCalendarBtn.addEventListener('click', () => {
+    // Mostrar el calendario
+    calendarElement.style.display = 'block';
+    // Ocultar el formulario de cita
+    appointmentForm.style.display = 'none';
+  });
 
-// Obtener el botón flotante
-const addEventFabButton = document.getElementById('boton-flotante');
+  // Evento de clic para guardar la cita
+  document.getElementById('boton-guardar-form').addEventListener('click', () => {
+    const selectedDayElement = document.querySelector('.selected-day');
+    if (selectedDayElement) {
+      const selectedDay = new Date(currentYear, currentMonth, parseInt(selectedDayElement.textContent));
+      const appointmentName = document.getElementById('ingresar-evento').value;
+      const appointmentTime = document.getElementById('boton-hora').value;
+      addEventToDay(selectedDay, appointmentName, appointmentTime);
+      // Mostrar los eventos del día seleccionado
+      showEventsForSelectedDay(selectedDay);
+    }
+    // Limpiar los campos después de guardar el evento
+    document.getElementById('ingresar-evento').value = ''; // Limpiar el campo de nombre de evento
+    document.getElementById('boton-hora').value = ''; // Limpiar el campo de hora de evento
+    // Ocultar el formulario de cita
+    appointmentForm.style.display = 'none';
+    // Mostrar el calendario
+    calendarElement.style.display = 'block';
+  });
 
-// Evento de clic para ir a la pantalla de agregar evento
-addEventFabButton.addEventListener('click', () => {
-  showAppointmentForm();
-});
-
-// Función para volver al calendario desde el formulario de cita
-backToCalendarBtn.addEventListener('click', () => {
-  // Mostrar el calendario
-  calendarElement.style.display = 'block';
-  // Ocultar el formulario de cita
-  appointmentForm.style.display = 'none';
-});
-
-// Evento de clic para guardar la cita
-document.getElementById('boton-guardar-form').addEventListener('click', () => {
-  const selectedDayElement = document.querySelector('.selected-day');
-  if (selectedDayElement) {
-    const selectedDay = new Date(currentYear, currentMonth, parseInt(selectedDayElement.textContent));
-    const appointmentName = document.getElementById('ingresar-evento').value;
-    const appointmentTime = document.getElementById('boton-hora').value;
-    addEventToDay(selectedDay, appointmentName, appointmentTime);
-    // Mostrar los eventos del día seleccionado
-    showEventsForSelectedDay(selectedDay);
-  }
-  // Limpiar los campos después de guardar el evento
-  document.getElementById('ingresar-evento').value = ''; // Limpiar el campo de nombre de evento
-  document.getElementById('boton-hora').value = ''; // Limpiar el campo de hora de evento
-  // Ocultar el formulario de cita
-  appointmentForm.style.display = 'none';
-  // Mostrar el calendario
-  calendarElement.style.display = 'block';
-});
-
-
-// Crear el calendario al cargar la página
-updateCalendar(currentYear, currentMonth);
+  // Crear el calendario al cargar la página
+  updateCalendar(currentYear, currentMonth);
 }
 
 // Crear el calendario
@@ -287,7 +286,7 @@ function sendNotification(event) {
   if (Notification.permission === 'granted') {
     new Notification('Recordatorio de Evento', {
       body: `El evento "${event.name}" comienza ahora a las ${event.time}.`,
-      icon: 'img/huracan.jpeg' // Puedes cambiar esto a la ruta de tu icono
+      icon: 'img/Juanjo.ico' // Puedes cambiar esto a la ruta de tu icono
     });
   }
 }
@@ -314,5 +313,3 @@ function Relojdigital() {
 }
 
 setInterval(Relojdigital, 1000);
-
-
