@@ -281,6 +281,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+
+function mostrarNotificaciones(mensaje) {
+  const notificaciones = document.getElementById('notificaciones');
+  notificaciones.style.display = 'block'; // Asegúrate de que se muestre
+  const nuevaNotificacion = document.createElement('div');
+  nuevaNotificacion.textContent = mensaje;
+  notificaciones.appendChild(nuevaNotificacion);
+}
+
+
 // Función para enviar notificaciones
 function sendNotification(event) {
   if (Notification.permission === 'granted') {
