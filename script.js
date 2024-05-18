@@ -33,7 +33,7 @@ function showEventsForSelectedDay(selectedDay) {
       eventInfo.textContent = `${event.name} - ${event.time}`;
       eventItem.appendChild(eventInfo);
 
-// Agregar un botón de "Editar" para editar el evento
+      // Agregar un botón de "Editar" para editar el evento
       const editButton = document.createElement('button');
       editButton.textContent = 'Editar';
       editButton.classList.add('boton-editar');
@@ -41,9 +41,6 @@ function showEventsForSelectedDay(selectedDay) {
         editEvent(selectedDay, event);
       });
       eventItem.appendChild(editButton);
-
-
-
 
       // Agregar un botón de "Borrar" para eliminar el evento
       const deleteButton = document.createElement('button');
@@ -79,8 +76,6 @@ function deleteEvent(day, eventToDelete) {
     updateCalendar(currentDate.getFullYear(), currentDate.getMonth()); // Actualizar el calendario con la fecha actual
   }
 }
-
-
 
 // Función para editar un evento seleccionado
 function editEvent(day, eventToEdit) {
@@ -184,132 +179,128 @@ function createCalendar() {
     }
 
     // Crear los días del mes
-    const lastDayOfMonth = new Date(year, month + 1, 0);
-    for (let i = 1; i <= lastDayOfMonth.getDate(); i++) {
-      
-      const dayElement = document.createElement('div');
-      dayElement.classList.add('day');
-      dayElement.textContent = i;
+const lastDayOfMonth = new Date(year, month + 1, 0);
+for (let i = 1; i <= lastDayOfMonth.getDate(); i++) {
+  
+  const dayElement = document.createElement('div');
+  dayElement.classList.add('day');
+  dayElement.textContent = i;
 
-      const key = new Date(year, month, i).toISOString().split('T')[0];
-      if (events[key] && events[key].length > 0) {
-        dayElement.classList.add('event-day'); // Agregar clase 'event-day' si hay eventos en este día
-      }
-
-      // Agregar clase 'current-day' al día actual
-      if (currentDate.getDate() === i && month === currentDate.getMonth() && year === currentDate.getFullYear()) {
-        dayElement.classList.add('current-day');
-      } else {
-        dayElement.classList.add('selectable-day'); // Agregar clase a los días seleccionables
-      }
-
-      // Evento de clic para seleccionar el día
-      dayElement.addEventListener('click', () => {
-        // Remover la clase de los otros días seleccionados
-        const selectedDays = document.querySelectorAll('.selected-day');
-        selectedDays.forEach(selectedDay => {
-          selectedDay.classList.remove('selected-day');
-        });
-        // Agregar la clase al día seleccionado
-        dayElement.classList.add('selected-day');
-        // Mostrar los eventos del día seleccionado
-        showEventsForSelectedDay(new Date(year, month, parseInt(dayElement.textContent)));
-      });
-      daysGrid.appendChild(dayElement);
-    }
-    calendarElement.appendChild(daysGrid);
+  const key = new Date(year, month, i).toISOString().split('T')[0];
+  if (events[key] && events[key].length > 0) {
+    dayElement.classList.add('event-day'); // Agregar clase 'event-day' si hay eventos en este día
   }
 
-  // Función para mostrar el formulario de cita
-  function showAppointmentForm() {
-    // Ocultar el calendario
-    calendarElement.style.display = 'none';
-    // Mostrar el formulario de cita
-    appointmentForm.style.display = 'block';
+  // Agregar clase 'current-day' al día actual
+  if (currentDate.getDate() === i && month === currentDate.getMonth() && year === currentDate.getFullYear()) {
+    dayElement.classList.add('current-day');
+  } else {
+    dayElement.classList.add('selectable-day'); // Agregar clase a los días seleccionables
   }
 
-  // Obtener el botón flotante
-  const addEventFabButton = document.getElementById('boton-flotante');
-
-  // Evento de clic para ir a la pantalla de agregar evento
-  addEventFabButton.addEventListener('click', () => {
-    showAppointmentForm();
+  // Evento de clic para seleccionar el día
+  dayElement.addEventListener('click', () => {
+    // Remover la clase de los otros días seleccionados
+    const selectedDays = document.querySelectorAll('.selected-day');
+    selectedDays.forEach(selectedDay => {
+      selectedDay.classList.remove('selected-day');
+    });
+    // Agregar la clase al día seleccionado
+    dayElement.classList.add('selected-day');
+    // Mostrar los eventos del día seleccionado
+    showEventsForSelectedDay(new Date(year, month, parseInt(dayElement.textContent)));
   });
+  daysGrid.appendChild(dayElement);
+}
+calendarElement.appendChild(daysGrid);
+}
 
-  // Función para volver al calendario desde el formulario de cita
-  backToCalendarBtn.addEventListener('click', () => {
-    // Mostrar el calendario
-    calendarElement.style.display = 'block';
-    // Ocultar el formulario de cita
-    appointmentForm.style.display = 'none';
-  });
+// Función para mostrar el formulario de cita
+function showAppointmentForm() {
+  // Ocultar el calendario
+  calendarElement.style.display = 'none';
+  // Mostrar el formulario de cita
+  appointmentForm.style.display = 'block';
+}
 
-  // Evento de clic para guardar la cita
-  document.getElementById('boton-guardar-form').addEventListener('click', () => {
-    const selectedDayElement = document.querySelector('.selected-day');
-    if (selectedDayElement) {
-      const selectedDay = new Date(currentYear, currentMonth, parseInt(selectedDayElement.textContent));
-      const appointmentName = document.getElementById('ingresar-evento').value;
-      const appointmentTime = document.getElementById('boton-hora').value;
-      addEventToDay(selectedDay, appointmentName, appointmentTime);
-      // Mostrar los eventos del día seleccionado
-      showEventsForSelectedDay(selectedDay);
-    }
-    // Limpiar los campos después de guardar el evento
-    document.getElementById('ingresar-evento').value = ''; // Limpiar el campo de nombre de evento
-    document.getElementById('boton-hora').value = ''; // Limpiar el campo de hora de evento
-    // Ocultar el formulario de cita
-    appointmentForm.style.display = 'none';
-    // Mostrar el calendario
-    calendarElement.style.display = 'block';
-  });
+// Obtener el botón flotante
+const addEventFabButton = document.getElementById('boton-flotante');
 
-  // Crear el calendario al cargar la página
-  updateCalendar(currentYear, currentMonth);
+// Evento de clic para ir a la pantalla de agregar evento
+addEventFabButton.addEventListener('click', () => {
+  showAppointmentForm();
+});
+
+// Función para volver al calendario desde el formulario de cita
+backToCalendarBtn.addEventListener('click', () => {
+  // Mostrar el calendario
+  calendarElement.style.display = 'block';
+  // Ocultar el formulario de cita
+  appointmentForm.style.display = 'none';
+});
+
+// Evento de clic para guardar la cita
+document.getElementById('boton-guardar-form').addEventListener('click', () => {
+  const selectedDayElement = document.querySelector('.selected-day');
+  if (selectedDayElement) {
+    const selectedDay = new Date(currentYear, currentMonth, parseInt(selectedDayElement.textContent));
+    const appointmentName = document.getElementById('ingresar-evento').value;
+    const appointmentTime = document.getElementById('boton-hora').value;
+    addEventToDay(selectedDay, appointmentName, appointmentTime);
+    // Mostrar los eventos del día seleccionado
+    showEventsForSelectedDay(selectedDay);
+  }
+  // Limpiar los campos después de guardar el evento
+  document.getElementById('ingresar-evento').value = ''; // Limpiar el campo de nombre de evento
+  document.getElementById('boton-hora').value = ''; // Limpiar el campo de hora de evento
+  // Ocultar el formulario de cita
+  appointmentForm.style.display = 'none';
+  // Mostrar el calendario
+  calendarElement.style.display = 'block';
+});
+
+
+// Crear el calendario al cargar la página
+updateCalendar(currentYear, currentMonth);
 }
 
 // Crear el calendario
 createCalendar();
 
-// Función para actualizar el calendario con el mes y año especificados
-function updateCalendar(year, month) {
-  // Tu código para actualizar el calendario iría aquí
-}
 
 // RELOJ
 const $tiempo = document.querySelector('.tiempo');
 
 function Relojdigital() {
   let f = new Date();
-  let dia = f.getDate();
-  let mes = f.getMonth() + 1;
-  let anio = f.getFullYear();
-  let diaSemana = f.getDay();
-
   let timeString = f.toLocaleTimeString();
   $tiempo.innerHTML = timeString;
   
-  
-  
-  function Relojdigital() {
   const events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : {};
   const currentDay = new Date();
   const currentHour = currentDay.getHours();
   const currentMinute = currentDay.getMinutes();
 
   Object.keys(events).forEach((key) => {
-    const event = events[key];
     const eventDay = new Date(key);
-    const eventHour = eventDay.getHours();
-    const eventMinute = eventDay.getMinutes();
-
-    if (eventDay.toDateString() === currentDay.toDateString() && eventHour === currentHour && eventMinute === currentMinute) {
-      // Enviar notificación al usuario
-      Notification.requestPermission().then(permission => {
-        if (permission === 'granted') {
-          const notification = new Notification('Evento', {
-            body: `El evento "${event.name}" comienza ahora.`,
-            icon: 'img/huracan.jpeg'
+    if (eventDay.toDateString() === currentDay.toDateString()) {
+      events[key].forEach(event => {
+        const [eventHour, eventMinute] = event.time.split(':').map(Number);
+        if (eventHour === currentHour && eventMinute === currentMinute) {
+          // Enviar notificación al usuario
+          
+          
+   // Solicitar permisos de notificación
+  if (Notification.permission !== 'granted') {
+    Notification.requestPermission();
+  }      
+          Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+              new Notification('Evento', {
+                body: `El evento "${event.name}" comienza ahora.`,
+                icon: 'img/huracan.jpeg'
+              });
+            }
           });
         }
       });
@@ -317,11 +308,6 @@ function Relojdigital() {
   });
 }
 
-}
 setInterval(() => {
   Relojdigital();
 }, 1000);
-
-
- 
- 
