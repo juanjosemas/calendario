@@ -322,4 +322,4 @@ function Relojdigital() {
   }
 }
 
-setInterval(Relojdigital, 1000);
+setInterval(Relojdigital, 10);
