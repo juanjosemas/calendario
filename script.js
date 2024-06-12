@@ -198,7 +198,7 @@ function createCalendar() {
         dayElement.classList.add('selectable-day'); // Agregar clase a los días seleccionables
       }
 
-      // Evento de clic para seleccionar el día
+   // Evento de clic para seleccionar el día
       dayElement.addEventListener('click', () => {
         // Remover la clase de los otros días seleccionados
         const selectedDays = document.querySelectorAll('.selected-day');
