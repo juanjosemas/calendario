@@ -2,65 +2,69 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="Content-Language" content="es">
-  <meta name="Robots" content="index">
-  <meta name="Author" content="Juan Jose">
-  <meta name="Distribution" content="global">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="Content-Language" content="es">
+<meta name="Robots" content="index">
+<meta name="Author" content="Juan Jose">
+<meta name="Distribution" content="global">
       
-  <title>Calendario</title>
+      <title>Calendario</title>
 
-  <!-- Enlace para Css -->
-  <link rel="stylesheet" href="styles.css">
+<!-- Enlace para Css -->
+<link rel="stylesheet"href="styles.css">
 
-  <!-- Enlace para fuentes de Google -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&displayfamily=Amatic+SC:wght@700&family=Caveat:wght@700&family=Dancing+Script:wght@700&family=Lobster&family=Metal+Mania&family=Yellowtail& family=Permanent+Marker&family=Piedra&family=Sriracha&display=swap" rel="stylesheet">
+<!-- Enlace para fuentes de google -->
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&displayfamily=Amatic+SC:wght@700&family=Caveat:wght@700&family=Dancing+Script:wght@700&family=Lobster&family=Metal+Mania&family=Yellowtail& family=Permanent+Marker&family=Piedra&family=Sriracha&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
-  <!-- Icono en el calendario -->
-  <img src="img/Juanjo.ico" class="ico" width="28">
+<!-- Icono en el calendario -->
+<img src="img/Juanjo.ico"class="ico"width="28">
 
-  <!-- Reloj -->
-  <div class="reloj">
-    <p class="tiempo"></p>
-  </div> 
+<!-- Reloj -->
+<div class="reloj">
+ <p class="tiempo"></p>
+</div> 
 
-  <!-- Calendario -->
-  <div id="calendario"></div>
-  <div id="notificaciones"></div> 
 
-  <!-- Evento bajo del calendario -->   
-  <div id="event-list"></div>
+
+
+<!-- Calendario -->
+   <div id="calendario"></div>
+ <div id="notificaciones"></div> 
+
+
+<!-- Evento bajo del calendario -->   
+   <div id="event-list"></div>
     
-  <!-- Formulario y titulo -->   
-  <div id="appointment-form" style="display: none;"> 
+<!-- Formulario y titulo -->   
+   <div id="appointment-form" style="display: none;"> 
     <h1>"Agregar evento"</h1>
-    <p id="selected-date"></p> 
-    <!-- Para poner evento con texto -->  
+       <p id="selected-date"></p> 
+<!-- Para poner evento con texto -->  
     <label for="ingresar-evento">Evento:</label>
     <input type="text" id="ingresar-evento">
-    <br><br>
-    <!-- Para poner hora con reloj --> 
-    <label for="boton-hora">Hora:</label>
-    <input type="time" id="boton-hora">
-    <br><br>
-    <button id="boton-atras-form">Atrás</button>
-    <button id="boton-guardar-form">Guardar</button>
-  </div> 
+     <br><br>
+<!-- Para poner hora con reloj --> 
+<label for="boton-hora">Hora:</label>
+     <input  type="time"id="boton-hora">
+     <br><br>
+     <button id="boton-atras-form">Atrás</button>
+     <button id="boton-guardar-form">Guardar</button>
+     </div> 
+  
+ 
+ 
+  
   <!-- Botón flotante para agregar evento -->
   <button id="boton-flotante" class="flotante">+</button>
-  
-  <!-- Botón flotante para ver eventos -->
-  
-  <button id="add-event-btn">Add Event</button>
-  
-  <!-- Enlace para el JavaScript -->
-  <script src="script.js"></script>
-  <!-- <script src="script-eventos.js"></script> -->
-  <script src="reloj.js"></script>
+
+<!-- Enlace para el JavaScript -->
+<script src="script.js"></script>
+<script src="reloj.js"></script>
 
 </body>
 </html>
