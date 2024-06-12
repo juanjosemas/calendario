@@ -191,11 +191,11 @@ function createCalendar() {
         dayElement.classList.add('event-day'); // Agregar clase 'event-day' si hay eventos en este día
       }
 
-      // Agregar clase 'current-day' al día actual
+     // Agregar clase 'current-day' al día actual
       if (currentDate.getDate() === i && month === currentDate.getMonth() && year === currentDate.getFullYear()) {
         dayElement.classList.add('current-day');
       } else {
-        dayElement.classList.add('selectable-day'); // Agregar clase a los días seleccionables
+   dayElement.classList.add('selectable-day'); // Agregar clase a los días seleccionables
       }
 
       // Evento de clic para seleccionar el día
@@ -281,7 +281,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-
 function mostrarNotificaciones(mensaje) {
   const notificaciones = document.getElementById('notificaciones');
   notificaciones.style.display = 'block'; // Asegúrate de que se muestre
@@ -289,7 +288,6 @@ function mostrarNotificaciones(mensaje) {
   nuevaNotificacion.textContent = mensaje;
   notificaciones.appendChild(nuevaNotificacion);
 }
-
 
 // Función para enviar notificaciones
 function sendNotification(event) {
@@ -323,3 +321,52 @@ function Relojdigital() {
 }
 
 setInterval(Relojdigital, 10);
+
+document.addEventListener('DOMContentLoaded', function() {
+    const calendarContainer = document.getElementById('calendar-container');
+    const addEventBtn = document.getElementById('add-event-btn');
+
+    // Example data for events
+    const events = [
+        { date: '2023-06-01', title: 'Event 1' },
+        { date: '2023-06-02', title: 'Event 2' },
+    ];
+
+    // Save events to localStorage
+    localStorage.setItem('events', JSON.stringify(events));
+
+    // Function to render calendar
+    function renderCalendar() {
+        const daysInMonth = 30; // Example for June
+        for (let i = 1; i <= daysInMonth; i++) {
+            const dayElement = document.createElement('div');
+            dayElement.className = 'day';
+            dayElement.textContent = i;
+            calendarContainer.appendChild(dayElement);
+        }
+    }
+
+    // Function to add events to calendar
+    function addEventsToCalendar() {
+        events.forEach(event => {
+            const dayElement = calendarContainer.querySelector(`.day:nth-child(${new Date(event.date).getDate()})`);
+            if (dayElement) {
+                const eventElement = document.createElement('div');
+                eventElement.className = 'event';
+                eventElement.textContent = event.title;
+                dayElement.appendChild(eventElement);
+            }
+        });
+    }
+
+    addEventBtn.addEventListener('click', function() {
+        window.location.href = 'eventos.html';
+    });
+
+    renderCalendar();
+    addEventsToCalendar();
+});
+
+
+
+
