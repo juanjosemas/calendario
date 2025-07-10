@@ -75,19 +75,22 @@ main {
 
 /* MODIFICADO: Botones más pequeños */
 .boton-accion {
-  font-family: Piedra;
+  font-family: Lobster;
   border-radius: 20px;
-  color: grey;
   font-style: italic;
-  margin: 0 3px; /* Reducido el margen */
-  padding: 2px 6px; /* Reducido el padding */
+  margin: 0 2px; /* Reducido el margen */
+  padding: 1px 2px; /* Reducido el padding */
   box-shadow: 1px 2px 2px 2px rgba(71, 71, 71, 0.60); /* Sombra más sutil */
   border: none;
   cursor: pointer;
 }
 
-.boton-borrar, .boton-editar {
-  /* Estilos específicos si los hubiera */
+.boton-editar {
+  color: green;
+} 
+
+.boton-borrar{
+  color: red;
 }
 
 .mes-anterior, .mes-siguiente {
