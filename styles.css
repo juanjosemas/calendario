@@ -79,7 +79,7 @@ main {
   border-radius: 20px;
   font-style: italic;
   margin: 0 2px; /* Reducido el margen */
-  padding: 1px 2px; /* Reducido el padding */
+  padding: 1px 1px; /* Reducido el padding */
   box-shadow: 1px 2px 2px 2px rgba(71, 71, 71, 0.60); /* Sombra más sutil */
   border: none;
   cursor: pointer;
@@ -243,7 +243,7 @@ main {
   font-family: Lobster;
   font-style: italic;
   color: black;
-  font-size: 19px;
+  font-size: 18px;
 }
 
 .ico {
