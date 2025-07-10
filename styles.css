@@ -236,7 +236,7 @@ main {
   z-index: 999; 
 }
 
-.reloj {
+.reloj, p, h3{
   font-family: Lobster;
   font-style: italic;
   color: black;
