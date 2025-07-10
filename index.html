@@ -20,51 +20,43 @@
 </head>
 
 <body>
+<div class="app-container">
 
-<!-- Icono en el calendario -->
-<img src="img/Juanjo.ico"class="ico"width="28">
+  <!-- Primera línea: Icono y reloj -->
+  <header class="cabecera">
+    <img src="img/Juanjo.ico" class="ico" width="28">
+    <div class="reloj">
+      <p class="tiempo"></p>
+    </div>
+  </header>
 
-<!-- Reloj -->
-<div class="reloj">
- <p class="tiempo"></p>
-</div> 
+  <!-- Contenedor para el calendario y la lista de eventos -->
+  <main>
+    <section id="calendario"></section>
+    <div id="event-list"></div>
+  </main>
 
-
-
-
-<!-- Calendario -->
-   <div id="calendario"></div>
- <div id="notificaciones"></div> 
-
-
-<!-- Evento bajo del calendario -->   
-   <div id="event-list"></div>
-    
-<!-- Formulario y titulo -->   
-   <div id="appointment-form" style="display: none;"> 
-    <h1>"Agregar evento"</h1>
-       <p id="selected-date"></p> 
-<!-- Para poner evento con texto -->  
+  <!-- MODIFICADO: El formulario ahora está FUERA de <main> para que el botón de añadir funcione -->
+  <section id="appointment-form" class="hidden"> 
+    <h1 id="form-title">"Agregar evento"</h1>
+    <p id="selected-date"></p> 
     <label for="ingresar-evento">Evento:</label>
     <input type="text" id="ingresar-evento">
-     <br><br>
-<!-- Para poner hora con reloj --> 
-<label for="boton-hora">Hora:</label>
-     <input  type="time"id="boton-hora">
-     <br><br>
-     <button id="boton-atras-form">Atrás</button>
-     <button id="boton-guardar-form">Guardar</button>
-     </div> 
-  
- 
- 
-  
-  <!-- Botón flotante para agregar evento -->
+    <br><br>
+    <label for="boton-hora">Hora:</label>
+    <input type="time" id="boton-hora">
+    <br><br>
+    <button id="boton-atras-form">Atrás</button>
+    <button id="boton-guardar-form">Guardar</button>
+  </section> 
+
+  <!-- Notificaciones y botón flotante fuera de los contenedores principales -->
+  <div id="notificaciones"></div> 
   <button id="boton-flotante" class="flotante">+</button>
 
-<!-- Enlace para el JavaScript -->
+</div> <!-- Fin de app-container -->
+
 <script src="script.js"></script>
-<script src="reloj.js"></script>
 
 </body>
 </html>

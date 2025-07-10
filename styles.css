@@ -1,7 +1,7 @@
 body {
-  margin: 5px 5px;
+  margin: 0;
   padding: 0;
-  align-items: center;
+  display: flex;
   justify-content: center;
   font-size: 15px;
   background-size: cover;
@@ -15,81 +15,91 @@ h1 {
   text-decoration: underline;
 }
 
-/* Estilos para el calendario */
+.hidden {
+  display: none !important; 
+}
+
+.app-container {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 5px 5px;
+  box-sizing: border-box;
+}
+
+/* Primera línea: Icono y reloj */
+.cabecera {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  max-width: 350px;
+  gap: 15px;
+  margin-top: -10px;
+}
+
+/* Contenedor principal de calendario y eventos */
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #calendario {
   font-family: Piedra;
   width: 350px;
-  margin: 20px 0;
+  margin: 0;
 }
 
-/* Cabecera del mes */
-.nombre-mes {
-  text-align: center;
-  font-size: 30px;
-  margin-bottom: 20px;
-  margin-top: 30px;
-  flex-direction: column;
+/* Segunda línea: Controles del mes */
+.nombre-mes-container {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  margin-top: -10px;
+  margin-bottom: 15px;
+}
+
+.nombre-mes {
+  font-family: Piedra;
+  font-size: 30px;
   font-style: italic;
 }
 
-/* Cambia el color del número cuando tiene un evento */
 .event-day {
   color: red;
 }
 
-/* Botón de borrar evento */
-.boton-borrar {
+/* MODIFICADO: Botones más pequeños */
+.boton-accion {
   font-family: Piedra;
   border-radius: 20px;
   color: grey;
   font-style: italic;
-  margin: 5px;
-  padding: 3px 5px;
-  box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
+  margin: 0 3px; /* Reducido el margen */
+  padding: 2px 6px; /* Reducido el padding */
+  box-shadow: 1px 2px 2px 2px rgba(71, 71, 71, 0.60); /* Sombra más sutil */
+  border: none;
+  cursor: pointer;
 }
 
-.boton-editar {
-  font-family: Piedra;
-  border-radius: 20px;
-  color: grey;
-  font-style: italic;
-  margin: 5px;
-  padding: 3px 5px;
-  box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
+.boton-borrar, .boton-editar {
+  /* Estilos específicos si los hubiera */
 }
 
-/* Botón para ir al mes anterior "◀" */
-.mes-anterior {
+.mes-anterior, .mes-siguiente {
   font-size: 13px;
-  display: flex;
-  flex-direction: row;
   padding: 10px 10px;
-  margin-top: -40px;
-  margin-bottom: 40px;
-  margin-left: 8px;
+  margin: 0; 
   background-color: cyan;
   border: 3px solid black;
   border-radius: 10px;
   box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
 }
 
-/* Botón para ir al mes siguiente "▶" */
-.mes-siguiente {
-  font-size: 13px;
-  display: flex;
-  flex-direction: row;
-  padding: 10px 10px;
-  margin-left: 300px;
-  margin-top: -85px;
-  background-color: cyan;
-  border: 3px solid black;
-  border-radius: 10px;
-  box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
-}
-
-/* Nombre de los días de la semana */
 .day-names {
   display: flex;
   font-family: Yellowtail;
@@ -103,14 +113,12 @@ h1 {
   padding: 5px;
 }
 
-/* Forma para cuadriculas del calendario */
 .days-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 3px;
 }
 
-/* Los días del mes para salir redondo y color de los números */
 .day {
   text-align: center;
   padding: 10px;
@@ -120,7 +128,6 @@ h1 {
   font-size: 14px;
 }
 
-/* Color en el día que estamos */
 .current-day {
   background-color: black;
   border-radius: 50%;
@@ -129,22 +136,20 @@ h1 {
   box-shadow: 0 0 0 3px black;
 }
 
-/* Fondo de los días del mes */
 .selectable-day {
   background-color: floralwhite;
 }
 
-/* Color cuando selecciono un día */
 .selected-day {
   background-color: darkgrey;
 }
 
-/* Estilos para el formulario de cita y colocación del formulario */
 #appointment-form {
-  display: none;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0;
+  margin-top: 20px;
+  width: 350px; 
 }
 
 #appointment-form h1 {
@@ -157,23 +162,24 @@ h1 {
   margin-bottom: 5px;
 }
 
-/* Estilos para la lista de eventos que van debajo del calendario */
 #event-list {
+  width: 100%;
+  max-width: 350px;
 }
 
+/* MODIFICADO: Eventos más compactos */
 .event {
-  /* Arriba, derecha, abajo, izquierda */
-  margin: 20px 10px 10px 4px;
+  margin: 8px 10px 8px 4px; /* Reducido el margen vertical */
   font-family: Lobster;
   box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
   display: flex;
   justify-content: space-between;
-  align-content: center;
+  align-items: center; 
   border-radius: 5px;
-  font-size: 17px;
+  font-size: 15px; /* Reducido el tamaño de la fuente */
+  padding: 4px 8px; /* Reducido el padding vertical */
 }
 
-/* Formato de Evento y Hora del formulario */
 #selected-date,
 #appointment-form {
   font-family: Piedra;
@@ -181,45 +187,39 @@ h1 {
   font-size: 20px;
 }
 
-/* Formato del ingreso de evento en formulario */
-#ingresar-evento {
+#ingresar-evento, #boton-hora {
   font-family: Sriracha;
   border: none;
   border-radius: 5px;
+  box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
+}
+
+#ingresar-evento {
   font-size: 1rem;
   font-style: italic;
-  box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
+  width: 90%; 
+  padding: 5px;
 }
 
-/* Formato del ingreso de hora en formulario */
 #boton-hora {
-  font-family: Sriracha;
-  border: none;
-  border-radius: 5px;
   font-size: 0.9rem;
-  box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
 }
 
-/* Botón 'guardar' del formulario */
-#boton-guardar-form {
+#boton-guardar-form, #boton-atras-form {
   font-family: Piedra;
   font-size: 17px;
   border-radius: 5px;
-  margin: 0 10px;
   box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
 }
 
-/* Botón 'Atrás' del formulario */
 #boton-atras-form {
-  font-family: Piedra;
-  font-size: 17px;
   order: -1;
-  border-radius: 5px;
-  margin: 0 50px;
-  box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
+  margin-right: 50px;
+}
+#boton-guardar-form {
+  margin-left: 10px;
 }
 
-/* Estilos para el botón flotante */
 .flotante {
   position: fixed;
   bottom: 20px;
@@ -233,12 +233,10 @@ h1 {
   border: none;
   cursor: pointer;
   box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
-  z-index: 999; /* Asegura que esté encima de otros elementos */
+  z-index: 999; 
 }
 
 .reloj {
-  display: flex;
-  margin: -50px 50px;
   font-family: Lobster;
   font-style: italic;
   color: black;
@@ -257,14 +255,8 @@ h1 {
 }
 
 @keyframes logo {
-  from {
-    opacity: 0;
-    transform: scale(0.5) rotate(0deg);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) rotate(1440deg);
-  }
+  from { opacity: 0; transform: scale(0.5) rotate(0deg); }
+  to { opacity: 1; transform: scale(1) rotate(1440deg); }
 }
 
 #notificaciones {
@@ -280,20 +272,5 @@ h1 {
   overflow-y: auto;
   display: none;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
-
-.notificacion {
-  padding: 10px;
-  margin-bottom: 5px;
-  border-bottom: 1px solid #ddd;
-}
-
-.boton-cerrar-notificacion {
-  background: none;
-  border: none;
-  color: red;
-  font-size: 14px;
-  cursor: pointer;
-  float: right;
-}
-
