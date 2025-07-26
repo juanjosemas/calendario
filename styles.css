@@ -46,6 +46,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: grab; /* Pista visual para el arrastre en escritorio */
 }
 
 #calendario {
@@ -57,7 +58,7 @@ main {
 /* Segunda línea: Controles del mes */
 .nombre-mes-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* MODIFICADO: Centra el título del mes */
   align-items: center;
   margin-top: -10px;
   margin-bottom: 15px;
@@ -93,15 +94,7 @@ main {
   color: red;
 }
 
-.mes-anterior, .mes-siguiente {
-  font-size: 13px;
-  padding: 10px 10px;
-  margin: 0; 
-  background-color: cyan;
-  border: 3px solid black;
-  border-radius: 10px;
-  box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
-}
+/* ELIMINADO: Las clases .mes-anterior y .mes-siguiente ya no son necesarias */
 
 .day-names {
   display: flex;

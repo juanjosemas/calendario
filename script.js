@@ -21,6 +21,9 @@ let currentYear = currentDate.getFullYear();
 let currentMonth = currentDate.getMonth();
 let editingEvent = null;
 let diaSeleccionado = null;
+// NUEVO: Variables para detectar el gesto de swipe
+let touchStartX = 0;
+let touchEndX = 0;
 
 
 // =================================================================
@@ -69,7 +72,7 @@ function showEventsForSelectedDay(selectedDay) {
   selectedDateElement.textContent = selectedDay.toLocaleDateString('es', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 }
 
-// MODIFICADO: Muestra TODOS los eventos del mes actual, sin título ni mensaje de "no hay eventos".
+// Muestra TODOS los eventos del mes actual, sin título ni mensaje de "no hay eventos".
 function showEventsForCurrentMonth(year, month) {
     eventListElement.innerHTML = ''; // Limpia la lista
 
@@ -166,30 +169,14 @@ function updateCalendar(year, month) {
   const monthHeaderContainer = document.createElement('div');
   monthHeaderContainer.classList.add('nombre-mes-container');
 
-  const prevMonthButton = document.createElement('button');
-  prevMonthButton.textContent = '◀';
-  prevMonthButton.classList.add('mes-anterior');
-  prevMonthButton.addEventListener('click', () => {
-    currentMonth--;
-    if (currentMonth < 0) { currentMonth = 11; currentYear--; }
-    updateCalendar(currentYear, currentMonth);
-  });
-  monthHeaderContainer.appendChild(prevMonthButton);
-
+  // ELIMINADO: Creación del botón de mes anterior.
+  
   const monthTitle = document.createElement('span');
   monthTitle.classList.add('nombre-mes');
   monthTitle.textContent = `${monthNames[month]} ${year}`;
   monthHeaderContainer.appendChild(monthTitle);
 
-  const nextMonthButton = document.createElement('button');
-  nextMonthButton.textContent = '▶';
-  nextMonthButton.classList.add('mes-siguiente');
-  nextMonthButton.addEventListener('click', () => {
-    currentMonth++;
-    if (currentMonth > 11) { currentMonth = 0; currentYear++; }
-    updateCalendar(currentYear, currentMonth);
-  });
-  monthHeaderContainer.appendChild(nextMonthButton);
+  // ELIMINADO: Creación del botón de mes siguiente.
 
   calendarElement.appendChild(monthHeaderContainer);
 
@@ -260,6 +247,32 @@ function resetForm() {
   editingEvent = null;
 }
 
+// NUEVO: Función para manejar el gesto de swipe
+function handleSwipeGesture() {
+  // Umbral mínimo de deslizamiento para evitar cambios accidentales (50px)
+  const swipeThreshold = 50;
+
+  // Swipe hacia la izquierda (mes siguiente)
+  if (touchStartX - touchEndX > swipeThreshold) {
+    currentMonth++;
+    if (currentMonth > 11) {
+      currentMonth = 0;
+      currentYear++;
+    }
+    updateCalendar(currentYear, currentMonth);
+  }
+
+  // Swipe hacia la derecha (mes anterior)
+  if (touchEndX - touchStartX > swipeThreshold) {
+    currentMonth--;
+    if (currentMonth < 0) {
+      currentMonth = 11;
+      currentYear--;
+    }
+    updateCalendar(currentYear, currentMonth);
+  }
+}
+
 // =================================================================
 // 4. MANEJADORES DE EVENTOS Y INICIALIZACIÓN
 // =================================================================
@@ -298,6 +311,33 @@ eventNameInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         event.preventDefault(); 
         saveEventBtn.click();
+    }
+});
+
+// NUEVO: Listeners para el gesto de Swipe en el calendario (táctil)
+mainContent.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+}, { passive: true }); // passive:true para mejor rendimiento
+
+mainContent.addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipeGesture();
+});
+
+// NUEVO: Listeners para el gesto de arrastre con el ratón (compatibilidad escritorio)
+mainContent.addEventListener('mousedown', e => {
+    // Solo inicia el "swipe" si se presiona el botón principal del ratón y no se está en el formulario
+    if (e.button === 0 && mainContent.classList.contains('hidden') === false) {
+      touchStartX = e.screenX;
+       // Previene la selección de texto mientras se arrastra
+      e.preventDefault(); 
+    }
+});
+
+mainContent.addEventListener('mouseup', e => {
+    if (e.button === 0 && mainContent.classList.contains('hidden') === false) {
+      touchEndX = e.screenX;
+      handleSwipeGesture();
     }
 });
 
