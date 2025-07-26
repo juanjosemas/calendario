@@ -166,7 +166,7 @@ main {
 
 /* MODIFICADO: Eventos más compactos */
 .event {
-  margin: 8px 10px 8px 4px; /* Reducido el margen vertical */
+  margin: 14px 10px 8px 4px; /* Reducido el margen vertical */
   font-family: Lobster;
   box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
   display: flex;
